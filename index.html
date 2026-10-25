@@ -1,0 +1,645 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Essoréké Kiheou · Data Analyst</title>
+<meta name="description" content="Essoréké Kiheou, Data Analyst : prévision, assurance et statistique publique. Python, R, SQL, SAS, Power BI. Disponible immédiatement.">
+<meta name="author" content="Essoréké Kiheou">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Essoréké Kiheou · Data Analyst">
+<meta property="og:description" content="Études de cas : diagnostic social, rétention client, sinistralité auto, prévision des ventes.">
+<meta property="og:image" content="assets/img/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#2745C4">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#F5F6F8; --surface:#FFFFFF; --ink:#131A26; --muted:#5A6274; --line:#DCE0E8;
+  --accent:#2745C4; --accent-soft:#E6EBFB; --warn:#B4531C; --good:#1F7A53; --img-bg:#FFFFFF;
+  --display:"Bricolage Grotesque","Avenir Next","Segoe UI",system-ui,sans-serif;
+  --body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0D111A; --surface:#151B27; --ink:#E7EAF2; --muted:#9AA3B6; --line:#283043;
+  --accent:#8FA3FF; --accent-soft:#1C2647; --warn:#F0965F; --good:#5FCB97; --img-bg:#F3F4F7; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0D111A; --surface:#151B27; --ink:#E7EAF2; --muted:#9AA3B6; --line:#283043;
+  --accent:#8FA3FF; --accent-soft:#1C2647; --warn:#F0965F; --good:#5FCB97; --img-bg:#F3F4F7; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+img{max-width:100%;display:block}
+.wrap{max-width:1140px;margin:0 auto}
+a{color:var(--accent);text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+h1,h2,h3,h4{font-family:var(--display);line-height:1.12;text-wrap:balance;margin:0}
+p{margin:0}
+.skip{position:absolute;left:-999px}.skip:focus{left:16px;top:8px;z-index:100;background:var(--surface);padding:8px 12px}
+.label{font-family:var(--mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+/* nav */
+header.nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);margin-inline:calc(-1*max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px));border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:72px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-family:var(--display);font-weight:700;font-size:1.1rem}
+.mono{width:34px;height:34px;border-radius:9px;background:var(--accent);color:var(--bg);display:grid;place-items:center;font-size:.85rem;font-weight:800}
+.nav ul{display:flex;gap:6px;list-style:none;margin:0;padding:0}
+.nav ul a{display:block;color:var(--ink);text-decoration:none;font-size:1.02rem;font-weight:500;padding:.45rem .9rem;border-radius:999px;transition:background .2s,color .2s}
+.nav ul a:hover{color:var(--accent);background:var(--accent-soft)}
+.nav ul a.active{color:var(--bg);background:var(--accent)}
+.icon-btn{border:1px solid var(--line);background:var(--surface);color:var(--ink);width:38px;height:38px;border-radius:10px;display:grid;place-items:center;cursor:pointer}
+.icon-btn svg{width:18px;height:18px}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.35fr .9fr;gap:56px;align-items:center;padding-block:72px 56px}
+.hero > *{min-width:0}
+.hello{font-family:var(--mono);color:var(--accent);font-size:.9rem;margin-bottom:10px}
+.hero h1{font-size:clamp(2.6rem,6vw,4.6rem);font-weight:800;letter-spacing:-.03em}
+.hero .role{font-family:var(--display);font-size:clamp(1.3rem,2.6vw,1.8rem);font-weight:600;color:var(--muted);margin-top:8px}
+.hero .lede{font-size:1.12rem;max-width:52ch;margin-top:22px}
+.ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:.75rem 1.2rem;border-radius:999px;font:500 .95rem var(--body);text-decoration:none;border:1px solid var(--line);color:var(--ink);background:var(--surface);cursor:pointer;transition:transform .15s,border-color .15s}
+.btn:hover{border-color:var(--accent);transform:translateY(-1px)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.btn svg{width:16px;height:16px}
+.socials{display:flex;gap:10px;margin-top:22px}
+.socials a{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:var(--ink);background:var(--surface)}
+.socials a:hover{border-color:var(--accent);color:var(--accent)}
+.socials svg{width:18px;height:18px}
+.portrait{position:relative;justify-self:center;width:min(340px,100%)}
+.portrait .ph{aspect-ratio:1;border-radius:28px;overflow:hidden;background:linear-gradient(145deg,var(--accent),color-mix(in srgb,var(--accent) 45%,var(--bg)));display:grid;place-items:center;max-width:100%}
+.portrait .ph img{width:100%;height:100%;object-fit:cover}
+.portrait .ph .init{font-family:var(--display);font-weight:800;font-size:6rem;color:var(--bg);letter-spacing:-.04em}
+.badge{position:absolute;left:-14px;bottom:22px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:.5rem .9rem;font-size:.85rem;font-weight:500;display:flex;align-items:center;gap:8px;box-shadow:0 6px 20px rgba(0,0,0,.08)}
+.badge::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--good);box-shadow:0 0 0 4px color-mix(in srgb,var(--good) 25%,transparent)}
+.badge.b2{left:auto;right:-10px;bottom:auto;top:22px}
+.badge.b2::before{background:var(--accent);box-shadow:none}
+
+.kpis{overflow:hidden;margin-bottom:24px;margin-inline:calc(-1*max(16px,env(safe-area-inset-left,0px)));padding-block:6px 10px;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.kpi-track{display:flex;gap:16px;width:max-content;animation:marquee 38s linear infinite}
+.kpis:hover .kpi-track,.kpis:focus-within .kpi-track{animation-play-state:paused}
+@keyframes marquee{to{transform:translateX(calc(-50% - 8px))}}
+.kpi-track > div{flex:0 0 300px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px;min-width:0;display:flex;flex-direction:column;gap:8px;position:relative;overflow:hidden;transition:transform .2s,border-color .2s,box-shadow .2s}
+.kpi-track > div::before{content:"";position:absolute;inset:0 0 auto;height:3px;background:var(--accent)}
+.kpi-track > div:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--accent) 45%,var(--line));box-shadow:0 12px 28px rgba(0,0,0,.07)}
+.kpi-track b{display:block;font-family:var(--display);font-size:2rem;font-weight:800;color:var(--accent);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.kpi-track p{font-size:.9rem;color:var(--muted);line-height:1.5}
+.kpi-track p strong{color:var(--ink);font-weight:600}
+
+/* sections */
+section.block{padding-block:88px 24px}
+.sec-head{margin-bottom:40px;display:flex;align-items:baseline;gap:16px;flex-wrap:wrap}
+.sec-head .n{font-family:var(--mono);color:var(--accent);font-size:1rem}
+.sec-head h2{font-size:clamp(1.9rem,3.8vw,2.7rem);font-weight:800;letter-spacing:-.02em}
+.sec-head p{flex-basis:100%;color:var(--muted);max-width:62ch}
+
+/* about */
+.about{display:grid;grid-template-columns:1.3fr 1fr;gap:48px}
+.about > *{min-width:0}
+.about .text p+p{margin-top:14px}
+.about .text p{font-size:1.05rem}
+.facts{display:grid;gap:18px}
+.fact{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+.fact h3{font-size:1rem;margin-bottom:8px}
+.fact ul{margin:0;padding-left:1.1rem;display:grid;gap:4px;font-size:.93rem}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:.82rem;padding:.25rem .65rem;border-radius:999px;border:1px solid var(--line)}
+
+/* projects */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.filters button{border:1px solid var(--line);background:var(--surface);color:var(--muted);font:500 .88rem var(--body);padding:.45rem .95rem;border-radius:999px;cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s;min-width:0}
+.card:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(0,0,0,.08)}
+.card .cover{text-decoration:none;aspect-ratio:16/9;background:var(--img-bg);border-bottom:1px solid var(--line);overflow:hidden;display:block;max-width:100%}
+.card .cover img{width:100%;height:100%;object-fit:contain;padding:10px}
+.card .cover.text{display:flex;flex-direction:column;justify-content:flex-end;padding:24px;background:linear-gradient(140deg,var(--accent) 0%,color-mix(in srgb,var(--accent) 35%,#0D111A) 100%);color:#fff}
+.card .cover.text svg{width:100%;height:auto;margin-bottom:auto;opacity:.9}
+.card .cover.text b{font-family:var(--display);font-size:1.5rem}
+.card .body{padding:22px 22px 24px;display:flex;flex-direction:column;gap:12px;flex:1}
+.card .meta{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.card h3{font-size:1.3rem;font-weight:700;letter-spacing:-.01em}
+.card p{font-size:.95rem;color:var(--muted)}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-family:var(--mono);font-size:.72rem;padding:.2rem .5rem;border-radius:6px;background:var(--accent-soft);color:var(--ink)}
+.metric{display:flex;align-items:baseline;gap:10px;padding:12px 14px;border-radius:10px;background:var(--bg)}
+.metric b{font-family:var(--display);font-size:1.4rem;color:var(--accent);white-space:nowrap}
+.metric span{font-size:.86rem;color:var(--muted)}
+.card .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto;padding-top:6px}
+.card .actions .btn{padding:.55rem 1rem;font-size:.88rem}
+.card[hidden]{display:none}
+
+/* dialog */
+dialog{border:0;padding:0;border-radius:20px;width:min(920px,calc(100vw - 24px));max-height:calc(100vh - 32px);background:var(--surface);color:var(--ink)}
+dialog::backdrop{background:rgba(8,10,18,.6);backdrop-filter:blur(3px)}
+.dlg-head{position:sticky;top:0;background:var(--surface);display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 24px;border-bottom:1px solid var(--line);z-index:2}
+.dlg-body{padding:28px clamp(18px,4vw,40px) 40px;display:grid;gap:26px}
+.dlg-body h3{font-size:clamp(1.5rem,3vw,2.1rem);font-weight:800;letter-spacing:-.02em}
+.dlg-body .q{font-size:1.06rem;max-width:68ch}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.steps > div{min-width:0;background:var(--bg);border-radius:12px;padding:16px}
+.steps h4{font:500 .75rem var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.steps ul{margin:0;padding-left:1.05rem;display:grid;gap:4px;font-size:.92rem}
+.steps p{font-size:.92rem}
+.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.gallery figure{margin:0;min-width:0}
+.gallery a{display:block;background:var(--img-bg);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.gallery img{width:100%;height:auto}
+.gallery figcaption{font-size:.82rem;color:var(--muted);margin-top:6px}
+.gallery.one{grid-template-columns:1fr}
+.decision{padding:16px 20px;border-left:3px solid var(--accent);background:var(--accent-soft);border-radius:0 12px 12px 0}
+.decision b{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:4px;color:var(--accent)}
+.limits{font-size:.9rem;color:var(--muted)}
+.limits ul{margin:6px 0 0;padding-left:1.1rem}
+
+
+/* méthode */
+.principles{display:grid;grid-template-columns:repeat(2,1fr);gap:28px 40px}
+.principles > div{min-width:0;padding-top:20px;border-top:2px solid var(--ink);display:flex;flex-direction:column;gap:8px}
+.principles .pi{width:40px;height:40px;border-radius:10px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center}
+.principles .pi svg{width:20px;height:20px}
+.principles h3{font-size:1.3rem;font-weight:700}
+.principles p{color:var(--muted);font-size:.98rem}
+.principles .ex{font-size:.88rem;color:var(--ink);font-weight:500}
+
+
+
+/* animations utiles */
+@keyframes up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes pop{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+@keyframes live{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--good) 55%,transparent)}100%{box-shadow:0 0 0 9px transparent}}
+.hero .hello,.hero h1,.hero .role,.hero .lede,.hero .ctas,.hero .socials{animation:up .7s cubic-bezier(.2,.7,.2,1) both}
+.hero h1{animation-delay:.08s}.hero .role{animation-delay:.16s}.hero .lede{animation-delay:.24s}.hero .ctas{animation-delay:.32s}.hero .socials{animation-delay:.4s}
+.portrait .ph{animation:pop .8s .15s cubic-bezier(.2,.7,.2,1) both}
+.badge{animation:up .6s .55s both}.badge.b2{animation-delay:.7s}
+.badge:not(.b2)::before{animation:live 1.8s ease-out infinite}
+.skill,.job{transition:border-color .2s,transform .2s}
+.skill:hover,.job:hover{border-color:color-mix(in srgb,var(--accent) 45%,var(--line));transform:translateY(-2px)}
+/* formation détaillée */
+.edu-d{margin-top:14px;display:grid;gap:12px}
+.edu-d .k{font:500 .72rem var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.edu-d .chip{background:var(--bg)}
+.edu-d ul{margin:0;padding-left:1.1rem;display:grid;gap:4px;font-size:.93rem}
+
+/* modèles et métriques */
+.models h4{font-size:1.15rem;margin-bottom:12px}
+.models .k{font:500 .72rem var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.mgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.mgrid > div{background:var(--bg);border-radius:12px;padding:16px;min-width:0}
+.mgrid .chip{background:var(--surface);font-size:.86rem}
+.chip em{font-style:normal;color:var(--muted);font-size:.75rem;margin-left:4px}
+.models .note{font-size:.9rem;color:var(--muted);margin-top:12px;max-width:72ch}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+.tbl table{border-collapse:collapse;width:100%;min-width:560px;font-size:.92rem}
+.tbl th{text-align:left;font:500 .72rem var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);background:var(--bg);padding:10px 14px}
+.tbl td{padding:12px 14px;border-top:1px solid var(--line);vertical-align:middle}
+.tbl td.f{font-family:"Cambria Math","STIX Two Math","Times New Roman",serif;font-size:1.05rem;white-space:nowrap}
+.tbl tr.best td{background:var(--accent-soft)}
+.pick{display:inline-block;font:500 .66rem var(--mono);letter-spacing:.06em;text-transform:uppercase;background:var(--accent);color:var(--bg);padding:.15rem .45rem;border-radius:5px;margin-left:4px;vertical-align:middle}
+.frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 3px;font-size:.88em;line-height:1.15}
+.frac > span:first-child{border-bottom:1px solid currentColor;padding:0 3px}
+.frac > span:last-child{padding:0 3px}
+@media (max-width:640px){.mgrid{grid-template-columns:1fr}}
+
+/* skills */
+.skills{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.skill{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;min-width:0}
+.skill .ic{width:38px;height:38px;border-radius:10px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;margin-bottom:14px}
+.skill .ic svg{width:20px;height:20px}
+.skill h3{font-size:1.05rem;margin-bottom:12px}
+.skill ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.skill li{font-size:.92rem;display:flex;flex-direction:column}
+.skill li small{color:var(--muted);font-size:.78rem}
+
+/* experience */
+.tl{position:relative;display:grid;gap:22px;padding-left:28px}
+.tl::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:var(--line)}
+.job{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px 24px}
+.job::before{content:"";position:absolute;left:-27px;top:26px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:3px solid var(--accent)}
+.job.edu::before{border-color:var(--muted)}
+.job .top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline}
+.job h3{font-size:1.15rem}
+.job .when{font-family:var(--mono);font-size:.82rem;color:var(--muted)}
+.job .org{color:var(--muted);font-size:.93rem;margin-top:2px}
+.job ul{margin:12px 0 0;padding-left:1.1rem;display:grid;gap:5px;font-size:.93rem;max-width:80ch}
+.job .tags{margin-top:12px}
+.sub{font-family:var(--display);font-size:1.15rem;margin:36px 0 16px}
+
+/* contact */
+.contact{background:var(--ink);color:var(--bg);border-radius:24px;padding:clamp(28px,5vw,56px);display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:end}
+.contact > *{min-width:0}
+.contact h2{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;letter-spacing:-.02em}
+.contact p{opacity:.75;margin-top:12px;max-width:48ch}
+.contact .lines{display:grid;gap:4px}
+.contact .line{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid color-mix(in srgb,var(--bg) 20%,transparent);flex-wrap:wrap}
+.contact .line a,.contact .line span.v{color:var(--bg);font-family:var(--mono);font-size:.92rem;overflow-wrap:anywhere}
+.contact .copy{border:1px solid color-mix(in srgb,var(--bg) 35%,transparent);background:transparent;color:var(--bg);font:500 .8rem var(--body);padding:.3rem .8rem;border-radius:999px;cursor:pointer}
+footer{padding-block:36px;color:var(--muted);font-size:.85rem;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+/* reveal */
+.reveal{opacity:1;transform:none;transition:opacity .6s,transform .6s}
+.js .reveal.pre{opacity:0;transform:translateY(14px)}
+
+@media (max-width:1060px){.nav ul a{font-size:.95rem;padding:.4rem .7rem}}
+@media (max-width:980px){.skills{grid-template-columns:repeat(2,1fr)}.nav ul{display:none}}
+@media (max-width:860px){
+  .principles{grid-template-columns:1fr}
+  .hero,.about,.contact{grid-template-columns:1fr}
+  .hero{padding-top:40px;gap:36px}.portrait{order:-1;width:min(240px,70%);justify-self:start}
+  .grid{grid-template-columns:1fr}.steps{grid-template-columns:1fr}.gallery{grid-template-columns:1fr}
+  .kpi-track > div{flex-basis:260px}
+}
+@media (max-width:520px){.skills{grid-template-columns:1fr}.badge{left:auto;right:-8px;bottom:-12px}.badge.b2{display:none}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}.kpis{mask-image:none;-webkit-mask-image:none;margin-inline:0}.kpi-track{flex-wrap:wrap;width:auto}.kpi-track > div{flex:1 1 240px}.kpi-track > [aria-hidden]{display:none}.js .reveal.pre{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Aller au contenu</a>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="mono">EK</span>Essoréké Kiheou</a>
+    <nav aria-label="Sections"><ul>
+      <li><a href="#apropos">À propos</a></li>
+      <li><a href="#projets">Projets</a></li>
+      <li><a href="#methode">Méthode</a></li>
+      <li><a href="#competences">Compétences</a></li>
+      <li><a href="#experience">Expérience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul></nav>
+    <button class="icon-btn" id="themeBtn" type="button" aria-label="Changer de thème">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="main" class="wrap">
+
+<section class="hero" id="top">
+  <div>
+    <p class="hello">Bonjour, je suis</p>
+    <h1>Essoréké Kiheou</h1>
+    <p class="role">Data Analyst · Prévision, assurance et statistique publique</p>
+    <p class="lede">Je transforme des données en décisions chiffrées, et j'indique jusqu'où on peut s'y fier. Double master en statistique économique et en analyse quantitative de l'assurance, six mois en prévision des ventes, et une mission bénévole d'analyse de la pauvreté pour le Secours Catholique.</p>
+    <div class="ctas">
+      <a class="btn primary" href="#projets">Voir mes projets</a>
+      <a class="btn" href="assets/cv.pdf" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-5-5m5 5l5-5M5 21h14"/></svg>Télécharger mon CV</a>
+    </div>
+    <div class="socials">
+      <a href="https://github.com/essoreke-analyse" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/></svg></a>
+      <a href="https://www.linkedin.com/in/essor%C3%A9k%C3%A9-kiheou-93996541b/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4V21H3zM9.5 9.75h3.8v1.54h.06c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1V21h-4v-5c0-1.2-.02-2.73-1.66-2.73-1.67 0-1.92 1.3-1.92 2.65V21h-4z"/></svg></a>
+      <a href="#contact" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
+    </div>
+  </div>
+  <div class="portrait">
+    <div class="ph"><img src="assets/img/photo.jpg" alt="Portrait d'Essoréké Kiheou" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'init',textContent:'EK'}))"></div>
+    <div class="badge">Disponible immédiatement</div>
+    <div class="badge b2">Python · R · SQL · SAS · Power BI</div>
+  </div>
+</section>
+
+<div class="kpis" aria-label="Chiffres clés">
+ <div class="kpi-track">
+  <div><b><span class="cnt" data-to="9">9</span> zones</b><p><strong>classées par niveau de besoin social</strong> pour orienter les actions du Secours Catholique d'Eure-et-Loir, avec un classement testé sous 5 hypothèses.</p></div>
+  <div><b><span class="cnt" data-to="12">12</span> %</b><p><strong>des clients à contacter</strong> pour une campagne de rétention rentable (+13 054 de gain net), contre −12 966 en contactant tout le monde.</p></div>
+  <div><b><span class="cnt" data-to="678007">678 007</span></b><p><strong>contrats auto analysés</strong> pour isoler les segments sous-tarifés et proposer une surprime ciblée.</p></div>
+  <div><b><span class="cnt" data-to="6">6</span> mois</b><p><strong>de prévision des ventes</strong> chez <span style="white-space:nowrap">M-extend</span>, de la collecte multi-sources à la restitution dans Streamlit.</p></div>
+  <div aria-hidden="true"><b><span class="cnt" data-to="9">9</span> zones</b><p><strong>classées par niveau de besoin social</strong> pour orienter les actions du Secours Catholique d'Eure-et-Loir, avec un classement testé sous 5 hypothèses.</p></div>
+  <div aria-hidden="true"><b><span class="cnt" data-to="12">12</span> %</b><p><strong>des clients à contacter</strong> pour une campagne de rétention rentable (+13 054 de gain net), contre −12 966 en contactant tout le monde.</p></div>
+  <div aria-hidden="true"><b><span class="cnt" data-to="678007">678 007</span></b><p><strong>contrats auto analysés</strong> pour isoler les segments sous-tarifés et proposer une surprime ciblée.</p></div>
+  <div aria-hidden="true"><b><span class="cnt" data-to="6">6</span> mois</b><p><strong>de prévision des ventes</strong> chez <span style="white-space:nowrap">M-extend</span>, de la collecte multi-sources à la restitution dans Streamlit.</p></div>
+ </div>
+</div>
+
+<section class="block" id="apropos">
+  <div class="sec-head"><h2>À propos</h2></div>
+  <div class="about">
+    <div class="text reveal">
+      <p>Je suis Data Analyst, formée à la fois à la statistique économique et à l'actuariat. Ce double regard me sert à poser la bonne question avant de choisir le modèle : quelle décision l'analyse doit-elle éclairer, et quelle erreur coûte le plus cher ?</p>
+      <p>Pendant mon stage de fin d'études chez M-extend, j'ai amélioré un algorithme de prévision des ventes en y intégrant des facteurs explicatifs, puis j'ai restitué les résultats aux équipes métiers dans une application Streamlit.</p>
+      <p>En parallèle, j'aide bénévolement le Secours Catholique d'Eure-et-Loir à prioriser ses actions grâce à un diagnostic statistique de la pauvreté, construit uniquement à partir de données publiques.</p>
+      <p>Je cherche un poste de <strong>Data Analyst, Data Scientist junior ou chargée d'études statistiques</strong>, de préférence dans l'assurance, le conseil, la distribution ou le secteur public.</p>
+    </div>
+    <div class="facts reveal">
+      <div class="fact"><h3>Formation</h3><ul>
+        <li>Master Études économiques et statistiques (M1 et M2) · Université Lumière Lyon 2 · 2024–2026</li>
+        <li>Master Monnaie, Banque, Finance, Assurance, parcours Analyse quantitative et marketing de l'assurance · IRA, Le Mans Université · 2022–2024</li>
+        <li>Certification SAS : analytique en assurance et analyse économique</li></ul></div>
+      <div class="fact"><h3>Savoir-être</h3><div class="chips">
+        <span class="chip">Esprit critique</span><span class="chip">Communication claire</span><span class="chip">Travail en équipe</span><span class="chip">Gestion du temps</span><span class="chip">Apprentissage continu</span><span class="chip">Résolution de problèmes</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="projets">
+  <div class="sec-head"><h2>Projets</h2><p>Projets professionnels, associatifs et personnels. Chaque étude de cas part d'une question métier et se termine par une recommandation.</p></div>
+  <div class="filters" role="group" aria-label="Filtrer les projets">
+    <button type="button" data-f="all" aria-pressed="true">Tous</button>
+    <button type="button" data-f="ml" aria-pressed="false">Machine learning</button>
+    <button type="button" data-f="stat" aria-pressed="false">Statistique publique</button>
+    <button type="button" data-f="bi" aria-pressed="false">BI & assurance</button>
+  </div>
+  <div class="grid">
+    <article class="card reveal" data-cat="stat">
+      <a class="cover" href="#" data-open="d-secours"><img src="assets/img/sc-composition.png" alt="Graphique : composition du score de besoin social par zone" loading="lazy"></a>
+      <div class="body">
+        <div class="meta"><span class="label">Bénévolat · 2026</span><span class="label">R · Quarto</span></div>
+        <h3>Diagnostic territorial des besoins sociaux</h3>
+        <p>Secours Catholique d'Eure-et-Loir : score composite pour classer neuf zones et repérer où concentrer les actions.</p>
+        <div class="metric"><b>43 %</b><span>de pauvreté aux Clos (Chartres), contre 13,3 % dans le département</span></div>
+        <div class="tags"><span class="tag">INSEE</span><span class="tag">CAF</span><span class="tag">ggplot2</span><span class="tag">Score composite</span><span class="tag">Robustesse</span></div>
+        <div class="actions"><button class="btn primary" type="button" data-open="d-secours">Lire l'étude de cas</button></div>
+      </div>
+    </article>
+
+    <article class="card reveal" data-cat="ml">
+      <a class="cover" href="#" data-open="d-churn"><img src="assets/img/churn-profit.png" alt="Graphique : gain net selon la politique de contact" loading="lazy"></a>
+      <div class="body">
+        <div class="meta"><span class="label">Projet personnel</span><span class="label">Python</span></div>
+        <h3>Churn télécom : décider qui appeler</h3>
+        <p>Prédiction du départ client transformée en règle de décision rentable pour une campagne de rétention.</p>
+        <div class="metric"><b>0,947</b><span>de PR-AUC, 95 % des départs captés dans le top 20 %</span></div>
+        <div class="tags"><span class="tag">scikit-learn</span><span class="tag">Gradient boosting</span><span class="tag">CV imbriquée</span><span class="tag">pytest</span></div>
+        <div class="actions"><button class="btn primary" type="button" data-open="d-churn">Lire l'étude de cas</button><a class="btn" href="https://github.com/essoreke-analyse/telecom-churn-retention" target="_blank" rel="noopener">Code GitHub</a></div>
+      </div>
+    </article>
+
+    <article class="card reveal" data-cat="bi">
+      <a class="cover" href="#" data-open="d-assurance"><img src="assets/img/ins-index.png" alt="Graphique : indice de rentabilité par segment" loading="lazy"></a>
+      <div class="body">
+        <div class="meta"><span class="label">Projet personnel</span><span class="label">Power BI</span></div>
+        <h3>Sinistralité auto et prime pure simulée</h3>
+        <p>Tableau de bord qui isole les segments sous-tarifés et sépare les vrais signaux des effets de petits volumes.</p>
+        <div class="metric"><b>×2,3</b><span>de fréquence de sinistres chez les jeunes conducteurs en puissance moyenne</span></div>
+        <div class="tags"><span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">Power Query</span><span class="tag">Tarification</span></div>
+        <div class="actions"><button class="btn primary" type="button" data-open="d-assurance">Lire l'étude de cas</button><a class="btn" href="https://github.com/essoreke-analyse/powerbi-insurance-profitability-analysis" target="_blank" rel="noopener">Code GitHub</a></div>
+      </div>
+    </article>
+
+    <article class="card reveal" data-cat="ml">
+      <a class="cover text" href="#" data-open="d-mextend" aria-label="Prévision des ventes">
+        <svg viewBox="0 0 300 90" fill="none" aria-hidden="true"><path d="M0 70 L30 60 L60 64 L90 48 L120 52 L150 36 L180 40" stroke="#fff" stroke-width="3"/><path d="M180 40 L210 30 L240 34 L270 20 L300 22" stroke="#fff" stroke-width="3" stroke-dasharray="6 6"/><line x1="180" y1="0" x2="180" y2="90" stroke="#fff" stroke-opacity=".4"/></svg>
+        <span class="label" style="color:#fff;opacity:.8">Stage de fin d'études · 6 mois</span><b>Prévision des ventes</b>
+      </a>
+      <div class="body">
+        <div class="meta"><span class="label">M-extend · 2026</span><span class="label">Python · SQL</span></div>
+        <h3>Optimisation d'un algorithme de forecasting</h3>
+        <p>Intégration de facteurs endogènes et exogènes, comparaison de modèles de séries temporelles et de machine learning, restitution dans Streamlit.</p>
+        <div class="metric"><b>Bout en bout</b><span>de la collecte multi-sources à la réflexion sur l'industrialisation</span></div>
+        <div class="tags"><span class="tag">Séries temporelles</span><span class="tag">Machine learning</span><span class="tag">Feature engineering</span><span class="tag">Streamlit</span><span class="tag">Qlik</span></div>
+        <div class="actions"><button class="btn primary" type="button" data-open="d-mextend">Voir le détail</button></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="block" id="methode">
+  <div class="sec-head"><h2>Comment je travaille</h2><p>Quatre habitudes que l'on retrouve dans chaque projet.</p></div>
+  <div class="principles">
+    <div class="reveal"><span class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg></span><h3>Choisir la métrique qui sert la décision</h3><p>L'accuracy cache souvent l'essentiel. Je mesure ce que le métier paie : gain net, rappel sur les cas utiles, sinistralité.</p><span class="ex">Churn : PR-AUC et courbe de profit plutôt qu'accuracy.</span></div>
+    <div class="reveal"><span class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg></span><h3>Tester la robustesse avant de conclure</h3><p>Un classement qui change dès qu'on bouge un poids ne doit pas guider une décision. Je le vérifie et je dis ce qui tient.</p><span class="ex">Secours Catholique : 5 hypothèses, extrémités stables, milieu fragile.</span></div>
+    <div class="reveal"><span class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span><h3>Respecter la statistique publique</h3><p>Pas de moyenne de pourcentages, secret statistique traité, années de source indiquées sous chaque graphique.</p><span class="ex">Taux recalculés à partir des effectifs INSEE et CAF.</span></div>
+    <div class="reveal"><span class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5"/></svg></span><h3>Écrire ce que les données ne disent pas</h3><p>Chaque livrable a sa section limites : petits effectifs, arrondis, associations qui ne sont pas des causes.</p><span class="ex">Assurance : segment régional écarté faute de volume.</span></div>
+  </div>
+</section>
+
+<section class="block" id="competences">
+  <div class="sec-head"><h2>Compétences</h2><p>Organisées par domaine, avec le contexte où chacune a servi.</p></div>
+  <div class="skills">
+    <div class="skill reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 6l-6 6 6 6M16 6l6 6-6 6"/></svg></div><h3>Langages</h3><ul>
+      <li>Python<small>pandas, scikit-learn, pytest</small></li><li>R<small>ggplot2, Quarto, R Markdown</small></li><li>SQL<small>requêtage, automatisation</small></li><li>SAS<small>SQL, Macro, IML · certification</small></li><li>VBA<small>automatisation Excel</small></li></ul></div>
+    <div class="skill reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 20h18M6 16l4-5 3 3 5-7"/></svg></div><h3>Modélisation</h3><ul>
+      <li>Séries temporelles, prévision<small>stage M-extend</small></li><li>Régression, classification<small>churn</small></li><li>Feature engineering<small>stage, churn</small></li><li>Validation croisée, calibration<small>churn</small></li><li>Scoring, indicateurs composites<small>Secours Catholique</small></li><li>Économétrie, SIG<small>Master Lyon 2</small></li></ul></div>
+    <div class="skill reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg></div><h3>BI et restitution</h3><ul>
+      <li>Power BI, DAX, Power Query<small>assurance</small></li><li>Streamlit, Matplotlib<small>stage M-extend</small></li><li>Qlik, Excel avancé<small>tableaux de bord</small></li><li>Rapports Quarto, Jupyter<small>diagnostic, churn</small></li><li>Vulgarisation<small>équipes métiers, bénévoles</small></li></ul></div>
+    <div class="skill reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg></div><h3>Domaines</h3><ul>
+      <li>Assurance, actuariat<small>prime pure, dépendance, vie et non-vie</small></li><li>Statistique publique<small>INSEE, CAF, RPLS</small></li><li>Marketing client<small>rétention, ciblage</small></li><li>Commerce, distribution<small>prévision des ventes</small></li><li>Git, Linux<small>industrialisation</small></li></ul></div>
+  </div>
+</section>
+
+<section class="block" id="experience">
+  <div class="sec-head"><h2>Expérience</h2></div>
+  <div class="tl">
+    <div class="job reveal">
+      <div class="top"><h3>Analyste quantitative bénévole</h3><span class="when">2026 · en cours</span></div>
+      <div class="org">Secours Catholique · délégation d'Eure-et-Loir</div>
+      <ul><li>Diagnostic des besoins sociaux de neuf zones à partir de six sources publiques (INSEE, CAF, RPLS)</li><li>Score de besoin composite et tests de robustesse pour guider la priorisation des actions</li><li>Rapport rédigé pour un public non technique, avec ses limites explicites</li><li>Prochaine étape : restitution des résultats dans un tableau de bord Looker Studio</li></ul>
+      <div class="tags"><span class="tag">R</span><span class="tag">Quarto</span><span class="tag">ggplot2</span><span class="tag">Excel</span><span class="tag">Looker Studio · à venir</span></div>
+    </div>
+    <div class="job reveal">
+      <div class="top"><h3>Ingénieure Analyse prédictive et modélisation statistique · stage</h3><span class="when">févr. – juil. 2026</span></div>
+      <div class="org">M-extend · Acigné (35) · sur site</div>
+      <ul>
+        <li>Optimisation d'un algorithme de prévision des ventes par l'intégration de facteurs explicatifs endogènes et exogènes ; évaluation de modèles de machine learning et de séries temporelles</li>
+        <li>Collecte, nettoyage et harmonisation de données multi-sources complexes</li>
+        <li>Analyse exploratoire de données économiques et commerciales ; feature engineering et indicateurs métiers</li>
+        <li>Automatisation des traitements en Python et requêtage SQL</li>
+        <li>Application Streamlit de visualisation des tendances et des prévisions</li>
+        <li>Réflexion sur l'industrialisation avec les équipes techniques ; restitution aux équipes métiers</li>
+      </ul>
+      <div class="tags"><span class="tag">Python</span><span class="tag">SQL</span><span class="tag">Streamlit</span><span class="tag">Matplotlib</span><span class="tag">Qlik</span><span class="tag">Linux</span><span class="tag">Git</span><span class="tag">Excel</span></div>
+    </div>
+  </div>
+  <h3 class="sub">Formation</h3>
+  <div class="tl">
+    <div class="job edu reveal"><div class="top"><h3>Master Études économiques et statistiques (M1 et M2)</h3><span class="when">sept. 2024 – août 2026</span></div><div class="org">Université Lumière Lyon 2 · Bac+5</div>
+      <div class="edu-d">
+        <div><div class="k">Enseignements clés</div><div class="chips"><span class="chip">Statistique avancée</span><span class="chip">Économétrie</span><span class="chip">Data science</span><span class="chip">Data mining</span><span class="chip">Machine learning</span><span class="chip">SIG</span><span class="chip">Big Data</span><span class="chip">SAS</span></div></div>
+        <div><div class="k">Outils</div><div class="chips"><span class="chip">R, R Markdown</span><span class="chip">Python : pandas, NumPy, scikit-learn</span><span class="chip">SAS / SQL</span></div></div>
+      </div></div>
+    <div class="job edu reveal"><div class="top"><h3>Master Monnaie, Banque, Finance, Assurance · parcours Analyse quantitative et marketing de l'assurance</h3><span class="when">sept. 2022 – août 2024</span></div><div class="org">Institut du Risque et de l'Assurance (IRA) · Le Mans Université · Bac+5</div>
+      <div class="edu-d">
+        <div><div class="k">Enseignements clés</div><div class="chips"><span class="chip">Probabilités et statistiques appliquées à l'assurance</span><span class="chip">Économie du risque</span><span class="chip">Assurance vie et non-vie</span><span class="chip">Protection sociale</span><span class="chip">Marketing de l'assurance</span><span class="chip">Machine learning</span><span class="chip">Big Data</span></div></div>
+        <div><div class="k">Projets</div><ul>
+          <li><strong>Mémoire de M2 :</strong> calcul d'une prime d'assurance dépendance à partir de tables de mortalité, sous SAS IML</li>
+          <li><strong>Feux de forêt au Canada :</strong> modèles actuariels d'estimation des primes, tendances temporelles et spatiales, modélisation de la propagation</li>
+          <li><strong>Scoring du désabonnement</strong> d'un opérateur télécom avec SAS, R et Python, repris et approfondi dans <a href="#projets">le projet churn</a></li></ul></div>
+        <div><div class="k">Outils et vie étudiante</div><div class="chips"><span class="chip">SAS : SQL, Macro, IML</span><span class="chip">R</span><span class="chip">Python</span><span class="chip">Membre du GEMAF</span></div></div>
+      </div></div>
+  </div>
+</section>
+
+<section class="block" id="contact">
+  <div class="sec-head"><h2>Contact</h2></div>
+  <div class="contact reveal">
+    <div>
+      <h2>Travaillons ensemble</h2>
+      <p>Disponible immédiatement, partout en France, pour un poste de Data Analyst, Data Scientist junior ou chargée d'études statistiques.</p>
+      <div class="ctas"><a class="btn primary" href="mailto:essorekekiheou@gmail.com">M'écrire</a><a class="btn" href="assets/cv.pdf" target="_blank" rel="noopener">Mon CV</a></div>
+    </div>
+    <div class="lines">
+      <div class="line"><span class="v" id="mail">essorekekiheou@gmail.com</span><button class="copy" type="button" id="copyMail">Copier</button></div>
+      <div class="line"><a href="https://www.linkedin.com/in/essor%C3%A9k%C3%A9-kiheou-93996541b/" target="_blank" rel="noopener">LinkedIn</a></div>
+      <div class="line"><a href="https://github.com/essoreke-analyse" target="_blank" rel="noopener">github.com/essoreke-analyse</a></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="wrap"><span>Conçu et développé par Essoréké Kiheou · 2026</span><span>Données des études de cas : INSEE, CAF, UCI, CASdatasets</span></footer>
+
+<!-- Études de cas détaillées -->
+<dialog id="d-secours" aria-labelledby="t-secours">
+  <div class="dlg-head"><span class="label">Étude de cas · Secours Catholique</span><button class="icon-btn" type="button" data-close aria-label="Fermer">✕</button></div>
+  <div class="dlg-body">
+    <h3 id="t-secours">Diagnostic territorial des besoins sociaux</h3>
+    <p class="q">Le Secours Catholique d'Eure-et-Loir accompagne des personnes en précarité dans tout le département. Où concentrer ses moyens ? J'ai comparé neuf zones et les deux quartiers prioritaires de Chartres à partir de six sources publiques, dans un rapport Quarto avec des graphiques ggplot2.</p>
+    <div class="steps">
+      <div><h4>Question</h4><p>Quelle est la situation de chaque zone par rapport au département ? Lesquelles cumulent les besoins ? Que cache la moyenne de Chartres ?</p></div>
+      <div><h4>Méthode</h4><ul><li>5 indicateurs : pauvreté, chômage, RSA, HLM, aides au logement</li><li>Normalisation 0–100 et pondération 35/20/20/15/10</li><li>Taux recalculés depuis les effectifs, jamais moyennés</li><li>Secret statistique traité par l'intercommunalité</li><li>Classement testé sous 5 hypothèses</li></ul></div>
+      <div><h4>Résultat</h4><ul><li>Chartres en tête (87,5), puis Thiron-Gardais (78,6), 962 habitants</li><li>Les Clos : 43 % de pauvreté ; La Madeleine : 37 %</li><li>Extrémités du classement stables, milieu fragile</li></ul></div>
+    </div>
+    <div class="gallery">
+      <figure><a href="assets/img/sc-score.png" target="_blank" rel="noopener"><img src="assets/img/sc-score.png" alt="Score de besoin social par zone" loading="lazy"></a><figcaption>Score de besoin par zone (0 à 100)</figcaption></figure>
+      <figure><a href="assets/img/sc-composition.png" target="_blank" rel="noopener"><img src="assets/img/sc-composition.png" alt="Contribution de chaque indicateur au score" loading="lazy"></a><figcaption>Ce qui compose le score de chaque zone</figcaption></figure>
+      <figure><a href="assets/img/sc-heatmap.png" target="_blank" rel="noopener"><img src="assets/img/sc-heatmap.png" alt="Vue d'ensemble des zones en carte de chaleur" loading="lazy"></a><figcaption>Vue d'ensemble des indicateurs du recensement</figcaption></figure>
+      <figure><a href="assets/img/sc-qpv.png" target="_blank" rel="noopener"><img src="assets/img/sc-qpv.png" alt="Taux de pauvreté dans les quartiers prioritaires de Chartres" loading="lazy"></a><figcaption>Pauvreté dans les quartiers prioritaires de Chartres</figcaption></figure>
+    </div>
+    <div class="decision"><b>Recommandation</b>Examiner en priorité Chartres, surtout ses quartiers prioritaires, et Thiron-Gardais. Ne pas départager La Ferté-Vidame, Saint-Rémy-sur-Avre et Châteauneuf-en-Thymerais : leurs écarts sont trop faibles. Confronter le classement à la connaissance de terrain des bénévoles.</div>
+    <div class="limits"><b>Limites</b><ul><li>Score relatif : un score bas ne veut pas dire absence de précarité</li><li>Effectifs CAF arrondis à 5, fragiles dans les petites communes</li><li>Années de source différentes (2021 à 2025)</li></ul></div>
+  </div>
+</dialog>
+
+<dialog id="d-churn" aria-labelledby="t-churn">
+  <div class="dlg-head"><span class="label">Étude de cas · Rétention client</span><button class="icon-btn" type="button" data-close aria-label="Fermer">✕</button></div>
+  <div class="dlg-body">
+    <h3 id="t-churn">Prédire le churn, puis décider qui appeler</h3>
+    <p class="q">Une offre de rétention coûte de l'argent et ne marche qu'une fois sur trois. Un modèle qui prédit « personne ne part » a déjà 84,3 % d'accuracy. La vraie question est : quels clients contacter pour que la campagne rapporte ?</p>
+    <div class="steps">
+      <div><h4>Question</h4><p>3 150 clients, 15,7 % de départs. Qui cibler, et combien ça rapporte selon le coût et le taux de succès de l'offre ?</p></div>
+      <div><h4>Méthode</h4><ul><li>Tests χ², V de Cramér, Mann-Whitney</li><li>Validation croisée imbriquée, stratifiée et groupée</li><li>Règle de gain espéré : p × succès × valeur − coût &gt; 0</li><li>Version « alerte précoce » sans variables tardives</li><li>39 tests pytest, configuration YAML</li></ul></div>
+      <div><h4>Résultat</h4><ul><li>ROC-AUC 0,987, PR-AUC 0,947</li><li>Brier 0,030 : probabilités bien calibrées</li><li>Rentable de 10 à 50 % de succès et de 5 à 20 de coût</li></ul></div>
+    </div>
+    <div class="gallery">
+      <figure><a href="assets/img/churn-profit.png" target="_blank" rel="noopener"><img src="assets/img/churn-profit.png" alt="Gain net selon la politique de contact" loading="lazy"></a><figcaption>Gain net selon la politique de contact</figcaption></figure>
+      <figure><a href="assets/img/churn-models.png" target="_blank" rel="noopener"><img src="assets/img/churn-models.png" alt="PR-AUC des modèles comparés" loading="lazy"></a><figcaption>Comparaison des modèles (PR-AUC)</figcaption></figure>
+    </div>
+    <div class="decision"><b>Recommandation</b>Contacter environ 12 % des clients avec la règle de gain espéré. Surveiller la baisse de fréquence d'appel comme signal précoce et tester l'effet des contrats par A/B test.</div>
+    <div class="limits"><b>Limites</b><ul><li>Coût et taux de succès de l'offre supposés</li><li>Chronologie de certaines variables non documentée</li><li>Associations, pas causalités</li></ul></div>
+    <a class="btn" href="https://github.com/essoreke-analyse/telecom-churn-retention" target="_blank" rel="noopener" style="justify-self:start">Voir le code sur GitHub</a>
+  </div>
+</dialog>
+
+<dialog id="d-assurance" aria-labelledby="t-assurance">
+  <div class="dlg-head"><span class="label">Étude de cas · Assurance auto</span><button class="icon-btn" type="button" data-close aria-label="Fermer">✕</button></div>
+  <div class="dlg-body">
+    <h3 id="t-assurance">Diagnostic de sinistralité et prime pure simulée</h3>
+    <p class="q">Un assureur voit sa sinistralité monter sans savoir quels profils en sont responsables. J'ai construit un tableau de bord Power BI pour isoler les segments sous-tarifés.</p>
+    <div class="steps">
+      <div><h4>Question</h4><p>678 007 contrats, 26 383 sinistres, 358 359 années d'exposition. Quels segments dégradent la rentabilité technique ?</p></div>
+      <div><h4>Méthode</h4><ul><li>Nettoyage Power Query et règles métier</li><li>Schéma en étoile, mesures DAX : fréquence, coût moyen, prime pure</li><li>Seuil de vigilance à 50 sinistres</li><li>Croisements âge × puissance</li></ul></div>
+      <div><h4>Résultat</h4><ul><li>18–25 ans : 5,7 % du portefeuille, indice 454,7 %</li><li>Jeunes + puissance moyenne : fréquence ×2,3, coût moyen ×3,9</li><li>Signal régional écarté : 77 sinistres</li></ul></div>
+    </div>
+    <div class="gallery one">
+      <figure><a href="assets/img/ins-index.png" target="_blank" rel="noopener"><img src="assets/img/ins-index.png" alt="Indice de rentabilité par segment" loading="lazy"></a><figcaption>Indice de rentabilité par segment</figcaption></figure>
+    </div>
+    <div class="decision"><b>Recommandation</b>Appliquer une surprime à la souscription pour les jeunes conducteurs, en priorité sur les véhicules de puissance moyenne à élevée.</div>
+    <div class="limits"><b>Limites</b><ul><li>Pas de primes réelles : prime pure simulée</li><li>Pas de dimension temporelle ni d'information sur la fraude</li></ul></div>
+    <a class="btn" href="https://github.com/essoreke-analyse/powerbi-insurance-profitability-analysis" target="_blank" rel="noopener" style="justify-self:start">Voir le projet sur GitHub</a>
+  </div>
+</dialog>
+
+<dialog id="d-mextend" aria-labelledby="t-mextend">
+  <div class="dlg-head"><span class="label">Stage de fin d'études · M-extend</span><button class="icon-btn" type="button" data-close aria-label="Fermer">✕</button></div>
+  <div class="dlg-body">
+    <h3 id="t-mextend">Optimisation d'un algorithme de prévision des ventes</h3>
+    <p class="q">Six mois sur site à Acigné (février à juillet 2026) pour améliorer la précision d'un algorithme de forecasting et le rendre exploitable par les équipes métiers.</p>
+    <div class="steps">
+      <div><h4>Données</h4><ul><li>Collecte et harmonisation de sources multiples</li><li>Contrôle qualité avant modélisation</li><li>Requêtage SQL et automatisation Python</li></ul></div>
+      <div><h4>Modélisation</h4><ul><li>Facteurs explicatifs endogènes et exogènes</li><li>Feature engineering et indicateurs métiers</li><li>Comparaison de modèles de séries temporelles et de machine learning</li></ul></div>
+      <div><h4>Restitution</h4><ul><li>Application Streamlit : tendances et prévisions</li><li>Réflexion sur l'industrialisation avec les équipes techniques</li><li>Présentation des résultats aux équipes métiers</li></ul></div>
+    </div>
+    <div class="models">
+      <h4>Modèles comparés</h4>
+      <div class="mgrid">
+        <div><div class="k">Séries temporelles</div><div class="chips"><span class="chip">Seasonal naive <em>référence</em></span><span class="chip">Moyenne mobile</span><span class="chip">ETS</span><span class="chip">ARIMA</span><span class="chip">SARIMA</span><span class="chip">SARIMAX <em>variables exogènes</em></span><span class="chip">Croston <em>demande intermittente</em></span></div></div>
+        <div><div class="k">Machine learning</div><div class="chips"><span class="chip">Ridge</span><span class="chip">Lasso</span><span class="chip">Random Forest</span><span class="chip">SVR</span><span class="chip">XGBoost</span><span class="chip">LightGBM</span><span class="chip">LSTM</span></div></div>
+      </div>
+      <p class="note">Chaque modèle est comparé à une prévision naïve saisonnière : un modèle n'est retenu que s'il fait mieux que cette référence simple.</p>
+    </div>
+    <div class="models">
+      <h4>Métriques d'évaluation</h4>
+      <div class="tbl"><table>
+        <thead><tr><th>Mesure</th><th>Formule</th><th>Unité</th><th>Lecture</th></tr></thead>
+        <tbody>
+          <tr><td><b>MAE</b></td><td class="f"><span class="frac"><span>1</span><span>n</span></span> Σ |y<sub>t</sub> − ŷ<sub>t</sub>|</td><td>Unités vendues</td><td>Erreur absolue moyenne</td></tr>
+          <tr><td><b>RMSE</b></td><td class="f">√( <span class="frac"><span>1</span><span>n</span></span> Σ (y<sub>t</sub> − ŷ<sub>t</sub>)² )</td><td>Unités vendues</td><td>Pénalise davantage les grandes erreurs</td></tr>
+          <tr><td><b>MAPE</b></td><td class="f"><span class="frac"><span>100</span><span>n</span></span> Σ |<span class="frac"><span>y<sub>t</sub> − ŷ<sub>t</sub></span><span>y<sub>t</sub></span></span>|</td><td>%</td><td>Erreur relative moyenne, instable quand les ventes sont proches de zéro</td></tr>
+          <tr class="best"><td><b>WAPE</b> <span class="pick">critère de choix</span></td><td class="f">100 × <span class="frac"><span>Σ |y<sub>t</sub> − ŷ<sub>t</sub>|</span><span>Σ |y<sub>t</sub>|</span></span></td><td>%</td><td>Erreur rapportée au volume total des ventes</td></tr>
+        </tbody>
+      </table></div>
+      <p class="note">Le modèle retenu est celui qui obtient le WAPE le plus faible. Contrairement au MAPE, le WAPE reste fiable sur les produits à faibles ventes et donne plus de poids aux produits qui pèsent le plus dans les volumes vendus.</p>
+    </div>
+    <p class="limits">Les données et résultats chiffrés sont confidentiels. Je les présente volontiers en entretien.</p>
+  </div>
+</dialog>
+
+<script>
+document.documentElement.classList.add('js');
+// Thème
+(function(){
+  const root=document.documentElement;
+  try{const t=localStorage.getItem('theme'); if(t) root.dataset.theme=t;}catch(e){}
+  document.getElementById('themeBtn').addEventListener('click',()=>{
+    const dark = root.dataset.theme ? root.dataset.theme==='dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    root.dataset.theme = dark ? 'light' : 'dark';
+    try{localStorage.setItem('theme',root.dataset.theme)}catch(e){}
+  });
+})();
+// Études de cas
+document.querySelectorAll('[data-open]').forEach(el=>el.addEventListener('click',e=>{
+  e.preventDefault(); const d=document.getElementById(el.dataset.open); if(d.showModal) d.showModal(); else d.setAttribute('open','');
+}));
+document.querySelectorAll('dialog').forEach(d=>{
+  d.querySelector('[data-close]').addEventListener('click',()=>d.close());
+  d.addEventListener('click',e=>{if(e.target===d) d.close();});
+});
+// Filtres
+const fbtns=document.querySelectorAll('.filters button');
+fbtns.forEach(b=>b.addEventListener('click',()=>{
+  fbtns.forEach(x=>x.setAttribute('aria-pressed',x===b));
+  document.querySelectorAll('.card').forEach(c=>c.hidden = !(b.dataset.f==='all' || c.dataset.cat===b.dataset.f));
+}));
+// Copier l'email
+const cb=document.getElementById('copyMail');
+cb.addEventListener('click',()=>{
+  const t=document.getElementById('mail').textContent;
+  const sel=()=>{const r=document.createRange();r.selectNodeContents(document.getElementById('mail'));const s=getSelection();s.removeAllRanges();s.addRange(r);};
+  if(navigator.clipboard) navigator.clipboard.writeText(t).then(()=>{cb.textContent='Copié';setTimeout(()=>cb.textContent='Copier',1800)},sel); else sel();
+});
+// Apparition douce
+if('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches){
+  const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.remove('pre');io.unobserve(en.target);}}),{threshold:.08});
+  document.querySelectorAll('.reveal').forEach(el=>{const r=el.getBoundingClientRect(); if(r.top>innerHeight){el.classList.add('pre');io.observe(el);}});
+}
+
+// Navigation : section active
+(function(){
+  const links=[...document.querySelectorAll('.nav ul a')];
+  const secs=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  function upd(){let cur=null;secs.forEach(s=>{if(s.getBoundingClientRect().top<140) cur=s.id;});
+    links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur));}
+  addEventListener('scroll',upd,{passive:true}); upd();
+})();
+// Compteurs des chiffres clés
+(function(){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const els=document.querySelectorAll('.cnt');
+  const run=el=>{const to=+el.dataset.to,t0=performance.now(),d=1200;
+    (function f(t){const k=Math.min((t-t0)/d,1),e=1-Math.pow(1-k,3);el.textContent=Math.round(to*e).toLocaleString('fr-FR');if(k<1)requestAnimationFrame(f);})(t0);};
+  els.forEach(el=>{el.textContent='0';});
+  setTimeout(()=>els.forEach(run),600);
+})();
+</script>
+</body>
+</html>
