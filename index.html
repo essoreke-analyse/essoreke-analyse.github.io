@@ -210,6 +210,19 @@ dialog::backdrop{background:rgba(8,10,18,.6);backdrop-filter:blur(3px)}
 .frac > span:last-child{padding:0 3px}
 @media (max-width:640px){.mgrid{grid-template-columns:1fr}}
 
+/* formulaire de contact */
+.cform{display:grid;gap:16px}
+.cform .row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.cform label{display:grid;gap:6px;font-size:.88rem;font-weight:500}
+.cform input,.cform textarea{font:400 1rem var(--body);color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:.7rem .85rem;width:100%;min-width:0}
+.cform textarea{resize:vertical}
+.cform input:focus,.cform textarea:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+.cform .invalid{border-color:var(--warn)}
+.cform .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.cf-status{font-size:.92rem;min-height:1.2em}
+.cf-status.ok{color:var(--good);font-weight:500}.cf-status.err{color:var(--warn)}
+@media (max-width:640px){.cform .row2{grid-template-columns:1fr}}
+
 /* skills */
 .skills{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
 .skill{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;min-width:0}
@@ -475,7 +488,7 @@ footer{padding-block:36px;color:var(--muted);font-size:.85rem;display:flex;justi
     <div>
       <h2>Travaillons ensemble</h2>
       <p>Disponible immédiatement, partout en France, pour un poste de Data Analyst, Data Scientist junior ou chargée d'études statistiques.</p>
-      <div class="ctas"><a class="btn primary" href="mailto:essorekekiheou@gmail.com">M'écrire</a><a class="btn" href="assets/cv.pdf" target="_blank" rel="noopener">Mon CV</a></div>
+      <div class="ctas"><button class="btn primary" type="button" data-open="d-contact">M'écrire</button><a class="btn" href="assets/cv.pdf" target="_blank" rel="noopener">Mon CV</a></div>
     </div>
     <div class="lines">
       <div class="line"><span class="v" id="mail">essorekekiheou@gmail.com</span><button class="copy" type="button" id="copyMail">Copier</button></div>
@@ -489,6 +502,28 @@ footer{padding-block:36px;color:var(--muted);font-size:.85rem;display:flex;justi
 <footer class="wrap"><span>Conçu et développé par Essoréké Kiheou · 2026</span><span>Données des études de cas : INSEE, CAF, UCI, CASdatasets</span></footer>
 
 <!-- Études de cas détaillées -->
+<dialog id="d-contact" aria-labelledby="t-contact">
+  <div class="dlg-head"><span class="label">Contact</span><button class="icon-btn" type="button" data-close aria-label="Fermer">✕</button></div>
+  <div class="dlg-body">
+    <div><h3 id="t-contact">Écrivez-moi</h3><p class="q" style="margin-top:8px;color:var(--muted)">Je vous réponds rapidement par email.</p></div>
+    <form id="contactForm" class="cform" novalidate>
+      <div class="row2">
+        <label>Prénom<input id="cf-prenom" name="Prénom" autocomplete="given-name" required></label>
+        <label>Nom<input id="cf-nom" name="Nom" autocomplete="family-name" required></label>
+      </div>
+      <div class="row2">
+        <label>Entreprise <span style="color:var(--muted);font-weight:400">(facultatif)</span><input id="cf-entreprise" name="Entreprise" autocomplete="organization"></label>
+        <label>Email<input id="cf-email" name="email" type="email" autocomplete="email" required></label>
+      </div>
+      <label>Objet<input id="cf-objet" name="Objet" required></label>
+      <label>Message<textarea id="cf-message" name="Message" rows="6" required></textarea></label>
+      <input type="text" name="_honey" id="cf-honey" tabindex="-1" autocomplete="off" class="hp" aria-hidden="true">
+      <p class="cf-status" id="cfStatus" role="status"></p>
+      <div class="ctas" style="margin-top:0"><button class="btn primary" type="submit" id="cfSend">Envoyer le message</button></div>
+    </form>
+  </div>
+</dialog>
+
 <dialog id="d-secours" aria-labelledby="t-secours">
   <div class="dlg-head"><span class="label">Étude de cas · Secours Catholique</span><button class="icon-btn" type="button" data-close aria-label="Fermer">✕</button></div>
   <div class="dlg-body">
@@ -610,6 +645,27 @@ fbtns.forEach(b=>b.addEventListener('click',()=>{
   fbtns.forEach(x=>x.setAttribute('aria-pressed',x===b));
   document.querySelectorAll('.card').forEach(c=>c.hidden = !(b.dataset.f==='all' || c.dataset.cat===b.dataset.f));
 }));
+// Formulaire de contact (envoi via FormSubmit vers l'adresse email)
+(function(){
+  const f=document.getElementById('contactForm'), st=document.getElementById('cfStatus'), btn=document.getElementById('cfSend');
+  f.addEventListener('submit',async e=>{
+    e.preventDefault(); st.className='cf-status'; st.textContent='';
+    let ok=true; f.querySelectorAll('[required]').forEach(i=>{const bad=!i.value.trim()||(i.type==='email'&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(i.value)); i.classList.toggle('invalid',bad); if(bad) ok=false;});
+    if(!ok){st.classList.add('err');st.textContent='Merci de remplir les champs obligatoires avec une adresse email valide.';return;}
+    if(document.getElementById('cf-honey').value) return;
+    const data=Object.fromEntries(new FormData(f));
+    data._subject='Portfolio : '+data['Objet']; data._template='table'; data._replyto=data.email;
+    btn.disabled=true; btn.textContent='Envoi en cours…';
+    try{
+      const r=await fetch('https://formsubmit.co/ajax/essorekekiheou@gmail.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)});
+      const j=await r.json().catch(()=>({}));
+      if(!r.ok||j.success==='false'||j.success===false) throw new Error();
+      f.reset(); st.classList.add('ok'); st.textContent='Merci, votre message a bien été envoyé. Je vous réponds rapidement.';
+    }catch(err){
+      st.classList.add('err'); st.textContent="Le message n'a pas pu être envoyé. Écrivez-moi directement à essorekekiheou@gmail.com.";
+    }finally{btn.disabled=false;btn.textContent='Envoyer le message';}
+  });
+})();
 // Copier l'email
 const cb=document.getElementById('copyMail');
 cb.addEventListener('click',()=>{
