@@ -228,12 +228,29 @@ dialog::backdrop{background:rgba(8,10,18,.6);backdrop-filter:blur(3px)}
 .card.wide .cover{flex:0 0 52%;aspect-ratio:auto;border-bottom:0;border-right:1px solid var(--line);display:flex;align-items:center}
 .card.wide .cover img{height:auto}
 @media (max-width:860px){.card.wide{flex-direction:column}.card.wide .cover{flex:none;aspect-ratio:16/9;border-right:0;border-bottom:1px solid var(--line)}}
-.missions{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.missions{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media (max-width:1100px){.missions{grid-template-columns:repeat(2,1fr)}}
 .missions > div{background:var(--bg);border-radius:12px;padding:16px;min-width:0}
 .missions h4{font:500 .75rem var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
 .missions p{font-size:.92rem}
 @media (max-width:860px){.missions{grid-template-columns:1fr}}
 .job ul.exp-d{gap:8px}
+
+/* illustration et interprétations */
+:root{--il-bg:#E9EDF5;--il-floor:#DCE1EB;--il-unit:#FFFFFF;--il-board:#B9C2D3;--il-a:#9FB0E8;--il-b:#C9D2F2;--il-c:#7C8FD6;--il-d:#E3E8F7;--il-label:rgba(255,255,255,.75);--il-tag:#F0965F;--il-tag-ink:#1B1206;--il-accent:#2745C4;--il-accent-2:#1D369E;--il-on-accent:#FFFFFF}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--il-bg:#151B27;--il-floor:#10151F;--il-unit:#1C2433;--il-board:#334058;--il-a:#3D4F8F;--il-b:#2C3A66;--il-c:#5168B8;--il-d:#26304A;--il-label:rgba(255,255,255,.35);--il-accent:#8FA3FF;--il-accent-2:#7088F0;--il-on-accent:#0D111A}}
+:root[data-theme="dark"]{--il-bg:#151B27;--il-floor:#10151F;--il-unit:#1C2433;--il-board:#334058;--il-a:#3D4F8F;--il-b:#2C3A66;--il-c:#5168B8;--il-d:#26304A;--il-label:rgba(255,255,255,.35);--il-accent:#8FA3FF;--il-accent-2:#7088F0;--il-on-accent:#0D111A}
+.card .cover.illus-cover{background:var(--il-bg);padding:0}
+.illus{width:100%;height:100%;display:block}
+.insights{display:grid;gap:22px}
+.insight{margin:0;display:grid;gap:12px}
+.insight > a{display:block;background:var(--img-bg);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.insight img{width:100%;height:auto}
+.insight figcaption{display:grid;gap:10px}
+.insight .read{font-size:.88rem;color:var(--muted);max-width:80ch}
+.insight .read b{color:var(--ink);font-weight:600}
+.insight .take{padding:14px 18px;border-left:3px solid var(--accent);background:var(--accent-soft);border-radius:0 12px 12px 0;font-size:.98rem}
+.insight .take b{display:block;font:500 .72rem var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:4px}
 
 /* skills */
 .skills{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
@@ -379,7 +396,37 @@ footer{padding-block:36px;color:var(--muted);font-size:.85rem;display:flex;justi
   </div>
   <div class="grid">
     <article class="card wide reveal" data-cat="retail ml">
-      <a class="cover" href="#" data-open="d-promo"><img src="assets/img/promo-decomposition.png" alt="Graphique : origine du volume vendu en promotion, ventes de base et volume additionnel" loading="lazy"></a>
+      <a class="cover illus-cover" href="#" data-open="d-promo">
+        <svg class="illus" viewBox="0 0 520 330" role="img" aria-label="Illustration d'un rayon de supermarché avec étiquettes de remise et un présentoir promotionnel">
+          <rect x="0" y="0" width="520" height="330" style="fill:var(--il-bg)"/>
+          <rect x="0" y="292" width="520" height="38" style="fill:var(--il-floor)"/>
+          <!-- rayon -->
+          <rect x="24" y="40" width="290" height="252" rx="6" style="fill:var(--il-unit)"/>
+          <rect x="34" y="78" width="22" height="40" rx="3" style="fill:var(--il-a)"/><rect x="38" y="86" width="14" height="5" rx="1.5" style="fill:var(--il-label)"/><rect x="62" y="78" width="30" height="40" rx="3" style="fill:var(--il-d)"/><rect x="66" y="86" width="22" height="5" rx="1.5" style="fill:var(--il-label)"/><rect x="98" y="84" width="22" height="34" rx="3" style="fill:var(--il-a)"/><rect x="102" y="92" width="14" height="5" rx="1.5" style="fill:var(--il-label)"/><rect x="126" y="78" width="22" height="40" rx="3" style="fill:var(--il-c)"/><rect x="130" y="86" width="14" height="5" rx="1.5" style="fill:var(--il-label)"/><rect x="154" y="84" width="22" height="34" rx="3" style="fill:var(--il-c)"/><rect x="158" y="92" width="14" height="5" rx="1.5" style="fill:var(--il-label)"/><rect x="182" y="84" width="26" height="34" rx="3" style="fill:var(--il-a)"/><rect x="186" y="92" width="18" height="5" rx="1.5" style="fill:var(--il-label)"/><rect x="214" y="84" width="26" height="34" rx="3" style="fill:var(--il-a)"/><rect x="218" y="92" width="18" height="5" rx="1.5" style="fill:var(--il-label)"/><rect x="246" y="78" width="30" height="40" rx="3" style="fill:var(--il-c)"/><rect x="250" y="86" width="22" height="5" rx="1.5" style="fill:var(--il-label)"/><rect x="282" y="84" width="22" height="34" rx="3" style="fill:var(--il-c)"/><rect x="286" y="92" width="14" height="5" rx="1.5" style="fill:var(--il-label)"/><rect x="34" y="152" width="26" height="46" rx="3" style="fill:var(--il-c)"/><rect x="38" y="160" width="18" height="5" rx="1.5" style="fill:var(--il-label)"/><rect x="66" y="152" width="22" height="46" rx="3" style="fill:var(--il-c)"/><rect x="70" y="160" width="14" height="5" rx="1.5" style="fill:var(--il-label)"/><rect x="94" y="158" width="30" height="40" rx="3" style="fill:var(--il-b)"/><rect x="98" y="166" width="22" height="5" rx="1.5" style="fill:var(--il-label)"/><rect x="130" y="164" width="22" height="34" rx="3" style="fill:var(--il-d)"/><rect x="134" y="172" width="14" height="5" rx="1.5" style="fill:var(--il-label)"/><rect x="158" y="164" width="26" height="34" rx="3" style="fill:var(--il-c)"/><rect x="162" y="172" width="18" height="5" rx="1.5" style="fill:var(--il-label)"/><rect x="190" y="158" width="22" height="40" rx="3" style="fill:var(--il-c)"/><rect x="194" y="166" width="14" height="5" rx="1.5" style="fill:var(--il-label)"/><rect x="218" y="164" width="30" height="34" rx="3" style="fill:var(--il-d)"/><rect x="222" y="172" width="22" height="5" rx="1.5" style="fill:var(--il-label)"/><rect x="254" y="152" width="26" height="46" rx="3" style="fill:var(--il-c)"/><rect x="258" y="160" width="18" height="5" rx="1.5" style="fill:var(--il-label)"/><rect x="286" y="158" width="26" height="40" rx="3" style="fill:var(--il-b)"/><rect x="290" y="166" width="18" height="5" rx="1.5" style="fill:var(--il-label)"/><rect x="34" y="238" width="22" height="40" rx="3" style="fill:var(--il-c)"/><rect x="38" y="246" width="14" height="5" rx="1.5" style="fill:var(--il-label)"/><rect x="62" y="244" width="22" height="34" rx="3" style="fill:var(--il-a)"/><rect x="66" y="252" width="14" height="5" rx="1.5" style="fill:var(--il-label)"/><rect x="90" y="232" width="26" height="46" rx="3" style="fill:var(--il-c)"/><rect x="94" y="240" width="18" height="5" rx="1.5" style="fill:var(--il-label)"/><rect x="122" y="232" width="30" height="46" rx="3" style="fill:var(--il-d)"/><rect x="126" y="240" width="22" height="5" rx="1.5" style="fill:var(--il-label)"/><rect x="158" y="238" width="30" height="40" rx="3" style="fill:var(--il-b)"/><rect x="162" y="246" width="22" height="5" rx="1.5" style="fill:var(--il-label)"/><rect x="194" y="244" width="30" height="34" rx="3" style="fill:var(--il-a)"/><rect x="198" y="252" width="22" height="5" rx="1.5" style="fill:var(--il-label)"/><rect x="230" y="244" width="26" height="34" rx="3" style="fill:var(--il-d)"/><rect x="234" y="252" width="18" height="5" rx="1.5" style="fill:var(--il-label)"/><rect x="262" y="244" width="26" height="34" rx="3" style="fill:var(--il-c)"/><rect x="266" y="252" width="18" height="5" rx="1.5" style="fill:var(--il-label)"/><rect x="294" y="232" width="26" height="46" rx="3" style="fill:var(--il-c)"/><rect x="298" y="240" width="18" height="5" rx="1.5" style="fill:var(--il-label)"/>
+          <rect x="24" y="118" width="290" height="8" style="fill:var(--il-board)"/>
+          <rect x="24" y="198" width="290" height="8" style="fill:var(--il-board)"/>
+          <rect x="24" y="278" width="290" height="8" style="fill:var(--il-board)"/>
+          <!-- étiquettes de prix -->
+          <g font-family="IBM Plex Mono, monospace" font-weight="600" font-size="13" text-anchor="middle">
+            <rect x="52" y="126" width="54" height="22" rx="3" style="fill:var(--il-tag)"/><text x="79" y="141" style="fill:var(--il-tag-ink)">−20 %</text>
+            <rect x="190" y="126" width="54" height="22" rx="3" style="fill:var(--il-tag)"/><text x="217" y="141" style="fill:var(--il-tag-ink)">−20 %</text>
+            <rect x="120" y="206" width="54" height="22" rx="3" style="fill:var(--il-tag)"/><text x="147" y="221" style="fill:var(--il-tag-ink)">−10 %</text>
+            <rect x="236" y="286" width="54" height="22" rx="3" style="fill:var(--il-tag)"/><text x="263" y="301" style="fill:var(--il-tag-ink)">−30 %</text>
+          </g>
+          <!-- présentoir -->
+          <rect x="350" y="96" width="140" height="196" rx="8" style="fill:var(--il-accent)"/>
+          <rect x="350" y="60" width="140" height="44" rx="8" style="fill:var(--il-accent-2)"/>
+          <text x="408" y="89" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif" font-weight="800" font-size="18" letter-spacing="1" style="fill:var(--il-on-accent)">PROMO</text>
+          <g style="fill:var(--il-on-accent)" fill-opacity=".9">
+            <rect x="366" y="124" width="34" height="40" rx="3"/><rect x="404" y="124" width="34" height="40" rx="3"/><rect x="442" y="124" width="34" height="40" rx="3"/>
+            <rect x="366" y="180" width="34" height="40" rx="3"/><rect x="404" y="180" width="34" height="40" rx="3"/><rect x="442" y="180" width="34" height="40" rx="3"/>
+            <rect x="366" y="236" width="34" height="40" rx="3"/><rect x="404" y="236" width="34" height="40" rx="3"/><rect x="442" y="236" width="34" height="40" rx="3"/>
+          </g>
+          <!-- pastille -->
+          <circle cx="484" cy="44" r="27" style="fill:var(--il-tag)"/>
+          <text x="484" y="50" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif" font-weight="800" font-size="15" style="fill:var(--il-tag-ink)">−20%</text>
+        </svg>
+      </a>
       <div class="body">
         <div class="meta"><span class="label">Projet personnel · nouveau</span><span class="label">Python · SQL</span></div>
         <h3>Promotions et prix en grande distribution : ce qui est rentable</h3>
@@ -433,7 +480,7 @@ footer{padding-block:36px;color:var(--muted);font-size:.85rem;display:flex;justi
       <div class="body">
         <div class="meta"><span class="label">M-extend · 2026</span><span class="label">Python · SQL</span></div>
         <h3>Fiabilisation et optimisation d'un algorithme de prévision des ventes</h3>
-        <p>Débogage et contrôles de cohérence, qualité des données, nouveaux facteurs explicatifs, comparaison de modèles, exécution automatisée sous Linux et restitution dans Streamlit.</p>
+        <p>Recueil des besoins métier, débogage et contrôles de cohérence, qualité des données, nouveaux facteurs explicatifs, comparaison de modèles, exécution automatisée sous Linux, restitution dans Streamlit et documentation technique.</p>
         <div class="metric"><b>18 mois</b><span>d'horizon de prévision, avec des exécutions mensuelles et trimestrielles automatisées qui alimentent la base de données</span></div>
         <div class="tags"><span class="tag">Séries temporelles</span><span class="tag">Machine learning</span><span class="tag">Feature engineering</span><span class="tag">Linux · crontab</span><span class="tag">Streamlit</span></div>
         <div class="actions"><button class="btn primary" type="button" data-open="d-mextend">Voir le détail</button></div>
@@ -479,12 +526,14 @@ footer{padding-block:36px;color:var(--muted);font-size:.85rem;display:flex;justi
       <div class="top"><h3>Ingénieure Analyse prédictive et modélisation statistique · stage</h3><span class="when">févr. – juil. 2026</span></div>
       <div class="org">M-extend · Acigné (35) · sur site</div>
       <ul class="exp-d">
+        <li><strong>Compréhension des enjeux métier :</strong> recueil des besoins des équipes commerciales afin d'identifier les indicateurs clés nécessaires aux analyses de prévision.</li>
         <li><strong>Maintenance corrective et fiabilisation de l'algorithme :</strong> analyse et débogage des scripts Python existants, correction des anomalies de traitement et des incohérences d'agrégation, contrôles pour sécuriser les traitements et garantir la cohérence des données.</li>
         <li><strong>Gestion et qualité des données :</strong> collecte, nettoyage, harmonisation et structuration de données multi-sources sous Python et SQL ; contrôle de la complétude et de la cohérence des données d'entraînement des modèles.</li>
         <li><strong>Analyse statistique et optimisation :</strong> analyses exploratoires, identification des facteurs explicatifs internes et externes les plus pertinents, création de variables et d'indicateurs métiers pour améliorer la prévision des ventes à 18 mois.</li>
         <li><strong>Modélisation statistique et machine learning :</strong> conception, comparaison et évaluation de modèles de séries temporelles et de machine learning (Holt-Winters, ETS, ARIMA, SARIMAX, Ridge, Random Forest, XGBoost, LightGBM, LSTM).</li>
         <li><strong>Industrialisation et automatisation :</strong> exécutions mensuelles et trimestrielles automatisées sous Linux (Python, crontab), logs de suivi et alimentation automatique de la base de données avec les prévisions générées.</li>
         <li><strong>Visualisation et restitution :</strong> interface Streamlit de suivi des tendances et restitution des analyses aux équipes décisionnelles, avec des recommandations opérationnelles.</li>
+        <li><strong>Documentation technique et transmission :</strong> rédaction d'une documentation technique expliquant le fonctionnement de l'algorithme, présentée aux équipes techniques en fin de stage pour assurer la reprise et la maintenance.</li>
       </ul>
       <div class="tags"><span class="tag">Python</span><span class="tag">SQL</span><span class="tag">Linux · crontab</span><span class="tag">Séries temporelles</span><span class="tag">Machine learning</span><span class="tag">Streamlit</span><span class="tag">Matplotlib</span><span class="tag">Qlik</span><span class="tag">Git</span><span class="tag">Excel</span></div>
     </div>
@@ -560,11 +609,28 @@ footer{padding-block:36px;color:var(--muted);font-size:.85rem;display:flex;justi
       <div><h4>Méthode</h4><ul><li>5 indicateurs : pauvreté, chômage, RSA, HLM, aides au logement</li><li>Normalisation 0–100 et pondération 35/20/20/15/10</li><li>Taux recalculés depuis les effectifs, jamais moyennés</li><li>Secret statistique traité par l'intercommunalité</li><li>Classement testé sous 5 hypothèses</li></ul></div>
       <div><h4>Résultat</h4><ul><li>Chartres en tête (87,5), puis Thiron-Gardais (78,6), 962 habitants</li><li>Les Clos : 43 % de pauvreté ; La Madeleine : 37 %</li><li>Extrémités du classement stables, milieu fragile</li></ul></div>
     </div>
-    <div class="gallery">
-      <figure><a href="assets/img/sc-score.png" target="_blank" rel="noopener"><img src="assets/img/sc-score.png" alt="Score de besoin social par zone" loading="lazy"></a><figcaption>Score de besoin par zone (0 à 100)</figcaption></figure>
-      <figure><a href="assets/img/sc-composition.png" target="_blank" rel="noopener"><img src="assets/img/sc-composition.png" alt="Contribution de chaque indicateur au score" loading="lazy"></a><figcaption>Ce qui compose le score de chaque zone</figcaption></figure>
-      <figure><a href="assets/img/sc-heatmap.png" target="_blank" rel="noopener"><img src="assets/img/sc-heatmap.png" alt="Vue d'ensemble des zones en carte de chaleur" loading="lazy"></a><figcaption>Vue d'ensemble des indicateurs du recensement</figcaption></figure>
-      <figure><a href="assets/img/sc-qpv.png" target="_blank" rel="noopener"><img src="assets/img/sc-qpv.png" alt="Taux de pauvreté dans les quartiers prioritaires de Chartres" loading="lazy"></a><figcaption>Pauvreté dans les quartiers prioritaires de Chartres</figcaption></figure>
+    <div class="insights">
+      <figure class="insight">
+        <a href="assets/img/sc-score.png" target="_blank" rel="noopener"><img src="assets/img/sc-score.png" alt="Score de besoin social par zone" loading="lazy"></a>
+        <figcaption>
+          <p class="read"><b>Comment lire :</b> chaque barre donne le score de besoin d'une zone, de 0 (la moins touchée des neuf) à 100 (la plus touchée). La couleur indique le territoire ; l'astérisque signale une pauvreté estimée à l'échelle de l'intercommunalité.</p>
+          <p class="take"><b>À retenir</b>Deux zones se détachent : Chartres (87,5) et Thiron-Gardais (78,6), une commune rurale de 962 habitants. Le besoin n'est donc pas seulement urbain, et il ne suit pas les territoires : le Drouais compte à la fois la zone la moins touchée (Bû) et l'une des plus touchées (Saint-Rémy-sur-Avre).</p>
+        </figcaption>
+      </figure>
+      <figure class="insight">
+        <a href="assets/img/sc-composition.png" target="_blank" rel="noopener"><img src="assets/img/sc-composition.png" alt="Contribution de chaque indicateur au score de besoin" loading="lazy"></a>
+        <figcaption>
+          <p class="read"><b>Comment lire :</b> la longueur totale de chaque barre est le score de la zone ; chaque couleur montre la part apportée par un indicateur : pauvreté, chômage, RSA, logements sociaux et aides au logement.</p>
+          <p class="take"><b>À retenir</b>Un même score peut cacher des besoins différents : à Chartres, ce sont surtout la pauvreté et les aides sociales ; à Thiron-Gardais, l'emploi et le logement. L'action à mener n'est donc pas la même partout.</p>
+        </figcaption>
+      </figure>
+      <figure class="insight">
+        <a href="assets/img/sc-qpv.png" target="_blank" rel="noopener"><img src="assets/img/sc-qpv.png" alt="Taux de pauvreté dans les quartiers prioritaires de Chartres" loading="lazy"></a>
+        <figcaption>
+          <p class="read"><b>Comment lire :</b> taux de pauvreté des deux quartiers prioritaires de Chartres (en rouge), comparé à la commune entière et au département (en gris). Les années de source sont indiquées entre parenthèses.</p>
+          <p class="take"><b>À retenir</b>Aux Clos et à La Madeleine, 43 % et 37 % des habitants vivent sous le seuil de pauvreté : deux fois plus que la moyenne de Chartres, près de trois fois plus que le département. La moyenne communale masque ces poches de grande précarité, où l'action est la plus urgente.</p>
+        </figcaption>
+      </figure>
     </div>
     <div class="decision"><b>Recommandation</b>Examiner en priorité Chartres, surtout ses quartiers prioritaires, et Thiron-Gardais. Ne pas départager La Ferté-Vidame, Saint-Rémy-sur-Avre et Châteauneuf-en-Thymerais : leurs écarts sont trop faibles. Confronter le classement à la connaissance de terrain des bénévoles.</div>
     <div class="limits"><b>Limites</b><ul><li>Score relatif : un score bas ne veut pas dire absence de précarité</li><li>Effectifs CAF arrondis à 5, fragiles dans les petites communes</li><li>Années de source différentes (2021 à 2025)</li></ul></div>
@@ -581,14 +647,38 @@ footer{padding-block:36px;color:var(--muted);font-size:.85rem;display:flex;justi
       <div><h4>Méthode</h4><ul><li>Élasticités-prix propres et croisées, effets fixes, rétrécissement bayésien empirique</li><li>Ventes de base contre volume additionnel, ROI et marge minimale de chaque promotion</li><li>Prévision LightGBM à 1–4 semaines, back-test glissant sur 28 semaines, scénarios P10–P90</li></ul></div>
       <div><h4>Résultat</h4><ul><li>Prospectus + présentoir multiplient les ventes par 3 à 5 ; la remise seule ajoute 20 à 60 %</li><li>Les promotions « prix seul » : 22 % du budget, environ deux tiers des pertes de marge</li><li>Prévision : WAPE de 29 %, contre 45 % pour une moyenne mobile</li></ul></div>
     </div>
-    <div class="gallery">
-      <figure><a href="assets/img/promo-decomposition.png" target="_blank" rel="noopener"><img src="assets/img/promo-decomposition.png" alt="Origine du volume vendu en promotion" loading="lazy"></a><figcaption>D'où vient le volume vendu en promotion</figcaption></figure>
-      <figure><a href="assets/img/promo-lift.png" target="_blank" rel="noopener"><img src="assets/img/promo-lift.png" alt="Hausse des ventes selon la mécanique promotionnelle" loading="lazy"></a><figcaption>Hausse des ventes selon la mécanique promotionnelle</figcaption></figure>
-      <figure><a href="assets/img/promo-forecast.png" target="_blank" rel="noopener"><img src="assets/img/promo-forecast.png" alt="Exemple de prévision hebdomadaire" loading="lazy"></a><figcaption>Prévision : LightGBM suit les pics de promotion</figcaption></figure>
-      <figure><a href="assets/img/promo-app.png" target="_blank" rel="noopener"><img src="assets/img/promo-app.png" alt="Simulateur de promotion dans l'application Streamlit" loading="lazy"></a><figcaption>Simulateur de promotion dans l'application en ligne</figcaption></figure>
+    <div class="insights">
+      <figure class="insight">
+        <a href="assets/img/promo-lift.png" target="_blank" rel="noopener"><img src="assets/img/promo-lift.png" alt="Hausse des ventes selon la mécanique promotionnelle, par catégorie" loading="lazy"></a>
+        <figcaption>
+          <p class="read"><b>Comment lire :</b> chaque barre indique combien de fois les ventes d'une semaine de promotion dépassent celles d'une semaine normale (la ligne pointillée, à 1, signifie « aucun effet »), selon le type de promotion : remise seule (TPR only), présentoir (Display), prospectus (Feature) ou les deux.</p>
+          <p class="take"><b>À retenir</b>Ce qui fait vendre, c'est la mise en avant, pas la remise. Avec prospectus et présentoir, les ventes sont multipliées par 3 à 5 ; une simple étiquette de remise ne les augmente que de 20 à 60 %. Le classement est le même dans les quatre catégories.</p>
+        </figcaption>
+      </figure>
+      <figure class="insight">
+        <a href="assets/img/promo-decomposition.png" target="_blank" rel="noopener"><img src="assets/img/promo-decomposition.png" alt="Origine du volume vendu en promotion : ventes de base, effet de la remise, effet de la mise en avant" loading="lazy"></a>
+        <figcaption>
+          <p class="read"><b>Comment lire :</b> pour chaque type de promotion, la barre découpe les ventes de la semaine en trois parts : en gris, ce qui se serait vendu de toute façon ; en bleu, ce qu'ajoute la remise ; en orange, ce qu'ajoute la mise en avant.</p>
+          <p class="take"><b>À retenir</b>Avec une remise seule, 53 % (pizza) à 86 % (bretzels) des ventes auraient eu lieu sans promotion : l'enseigne brade surtout des ventes déjà acquises. Avec prospectus et présentoir, 59 à 78 % des ventes sont réellement additionnelles. C'est pourquoi les promotions « prix seul » ont coûté environ 436 000 $ de marge en trois ans.</p>
+        </figcaption>
+      </figure>
+      <figure class="insight">
+        <a href="assets/img/promo-forecast.png" target="_blank" rel="noopener"><img src="assets/img/promo-forecast.png" alt="Exemple de prévision hebdomadaire pour une pizza dans un magasin" loading="lazy"></a>
+        <figcaption>
+          <p class="read"><b>Comment lire :</b> ventes réelles d'une pizza dans un magasin (en noir), prévision du modèle (en orange, avec sa fourchette basse–haute) et moyenne mobile (en pointillés). Les bandes grises sont les semaines de promotion.</p>
+          <p class="take"><b>À retenir</b>Une prévision classique rate les pics de promotion et sous-estime ces semaines de 35 %, ce qui provoque des ruptures de stock. Le modèle, qui connaît le calendrier des promotions, suit les pics : son erreur est de 29 % contre 45 %, sans sous-estimer ni surestimer.</p>
+        </figcaption>
+      </figure>
     </div>
     <div class="models">
       <h4>Application et assistant IA</h4>
+      <figure class="insight" style="margin-bottom:14px">
+        <a href="assets/img/promo-app.png" target="_blank" rel="noopener"><img src="assets/img/promo-app.png" alt="Simulateur de promotion dans l'application Streamlit" loading="lazy"></a>
+        <figcaption>
+          <p class="read"><b>Comment lire :</b> on choisit un produit, une remise, la mise en avant et une marge ; l'application calcule les ventes, la marge et le ROI, et la courbe montre la marge obtenue pour chaque niveau de remise.</p>
+          <p class="take"><b>À retenir</b>Un responsable de catégorie peut tester une promotion avant de la lancer. Exemple : avec prospectus et présentoir, la pizza DiGiorno rapporte le plus de marge avec la plus petite remise. C'est la mise en avant, et non la profondeur de la remise, qui crée le volume.</p>
+        </figcaption>
+      </figure>
       <p class="note" style="margin-top:0">L'application Streamlit propose un simulateur de promotion (remise, mise en avant, marge : volume, marge et ROI), l'exploration des prévisions et un assistant IA qui répond en français ou en anglais en appelant des outils qui lisent les tables de résultats : chaque chiffre vient de l'analyse. L'assistant est évalué automatiquement sur 20 questions et obtient 20/20, toutes ses réponses s'appuyant sur un appel d'outil.</p>
     </div>
     <div class="decision"><b>Recommandations</b>Arrêter progressivement les promotions « prix seul » et réaffecter ce budget au présentoir ; faire du présentoir avec une remise modérée la mécanique par défaut sur les bretzels ; garder prospectus + présentoir sur la pizza et les céréales seulement au-delà d'environ 35 % de marge ; juger chaque promotion sur la marge additionnelle, pas sur la hausse de volume.</div>
@@ -607,9 +697,21 @@ footer{padding-block:36px;color:var(--muted);font-size:.85rem;display:flex;justi
       <div><h4>Méthode</h4><ul><li>Tests χ², V de Cramér, Mann-Whitney</li><li>Validation croisée imbriquée, stratifiée et groupée</li><li>Règle de gain espéré : p × succès × valeur − coût &gt; 0</li><li>Version « alerte précoce » sans variables tardives</li><li>39 tests pytest, configuration YAML</li></ul></div>
       <div><h4>Résultat</h4><ul><li>ROC-AUC 0,987, PR-AUC 0,947 ; 95 % des départs dans le top 20 %</li><li>En contactant 12 % des clients, on touche 66 % des départs</li><li>Brier 0,030 : probabilités bien calibrées</li><li>Rentable sur toute la grille d'hypothèses (succès de 10 à 50 %, coût de 5 à 20)</li></ul></div>
     </div>
-    <div class="gallery">
-      <figure><a href="assets/img/churn-profit.png" target="_blank" rel="noopener"><img src="assets/img/churn-profit.png" alt="Gain net selon la politique de contact" loading="lazy"></a><figcaption>Gain net selon la politique de contact</figcaption></figure>
-      <figure><a href="assets/img/churn-curve.png" target="_blank" rel="noopener"><img src="assets/img/churn-curve.png" alt="Courbe de profit selon la part de clients contactés" loading="lazy"></a><figcaption>Courbe de profit selon la part de clients contactés</figcaption></figure>
+    <div class="insights">
+      <figure class="insight">
+        <a href="assets/img/churn-profit.png" target="_blank" rel="noopener"><img src="assets/img/churn-profit.png" alt="Gain net de la campagne selon la politique de contact" loading="lazy"></a>
+        <figcaption>
+          <p class="read"><b>Comment lire :</b> gain net de la campagne de fidélisation selon la façon de choisir les clients à contacter. En orange, une perte ; en bleu, un gain (en unités de valeur client).</p>
+          <p class="take"><b>À retenir</b>Contacter tout le monde fait perdre de l'argent (−12 966) : on paie une offre à des milliers de clients qui ne seraient jamais partis. La règle du gain attendu, qui ne contacte que 12 % des clients, obtient le meilleur gain (+13 054), et elle se calcule avant la campagne.</p>
+        </figcaption>
+      </figure>
+      <figure class="insight">
+        <a href="assets/img/churn-curve.png" target="_blank" rel="noopener"><img src="assets/img/churn-curve.png" alt="Courbe de profit selon la part de clients contactés" loading="lazy"></a>
+        <figcaption>
+          <p class="read"><b>Comment lire :</b> on contacte les clients du plus risqué au moins risqué (axe horizontal) ; la courbe donne le gain net cumulé. La ligne rouge marque le meilleur point.</p>
+          <p class="take"><b>À retenir</b>Le gain monte vite puis redescend : au-delà d'environ 20 % des clients, chaque contact supplémentaire coûte plus qu'il ne rapporte, et au-delà de 60 % la campagne devient déficitaire. La clé, c'est de cibler une minorité bien choisie.</p>
+        </figcaption>
+      </figure>
     </div>
     <div class="decision"><b>Recommandation</b>Contacter environ 12 % des clients avec la règle de gain espéré, en présentant le gain comme une fourchette : de +6 800 à +13 000 selon la réaction des clients déjà inactifs. Lancer d'abord la campagne en test A/B pour mesurer le vrai taux de succès de l'offre, et surveiller la baisse de fréquence d'appel comme signal précoce.</div>
     <div class="limits"><b>Limites</b><ul><li>Un modèle de churn prédit qui va partir, pas qui réagira à l'offre</li><li>Coût et taux de succès de l'offre supposés ; unité de la valeur client non documentée</li><li>Associations, pas causalités</li></ul></div>
@@ -627,11 +729,35 @@ footer{padding-block:36px;color:var(--muted);font-size:.85rem;display:flex;justi
       <div><h4>Méthode</h4><ul><li>Modèle en étoile et mesures DAX : fréquence, coût moyen, prime pure, indice brut et écrêté</li><li>Sinistres plafonnés à 34 495 € (99,5ᵉ percentile)</li><li>Intervalles de confiance et seuil de crédibilité à 50 sinistres</li><li>GLM de Poisson (fréquence) et Gamma (coût), tarif testé sur 20 % des contrats mis de côté</li></ul></div>
       <div><h4>Résultat</h4><ul><li>18–25 ans : fréquence de 14,8 % contre 7,4 %, indice écrêté de 225 %</li><li>À Bonus-Malus égal, l'effet de l'âge disparaît : l'enjeu est la souscription des nouveaux conducteurs</li><li>Le tarif couvre les sinistres à 1,6 % près (Gini 0,18) ; avec un prix unique, 8 assurés sur 10 paieraient trop</li></ul></div>
     </div>
-    <div class="gallery">
-      <figure><a href="assets/img/ins-dashboard.png" target="_blank" rel="noopener"><img src="assets/img/ins-dashboard.png" alt="Tableau de bord Power BI" loading="lazy"></a><figcaption>Le tableau de bord Power BI</figcaption></figure>
-      <figure><a href="assets/img/ins-ecretement.png" target="_blank" rel="noopener"><img src="assets/img/ins-ecretement.png" alt="Indice de prime pure brut et écrêté" loading="lazy"></a><figcaption>Indice brut et écrêté : un seul sinistre faussait l'image</figcaption></figure>
-      <figure><a href="assets/img/ins-glm.png" target="_blank" rel="noopener"><img src="assets/img/ins-glm.png" alt="Effet de l'âge avant et après prise en compte du Bonus-Malus" loading="lazy"></a><figcaption>Effet de l'âge avant et après le Bonus-Malus (GLM)</figcaption></figure>
-      <figure><a href="assets/img/ins-tarif.png" target="_blank" rel="noopener"><img src="assets/img/ins-tarif.png" alt="Prime prédite et coût observé sur l'échantillon test" loading="lazy"></a><figcaption>Prime prédite et coût observé sur des contrats jamais vus</figcaption></figure>
+    <div class="insights">
+      <figure class="insight">
+        <a href="assets/img/ins-dashboard.png" target="_blank" rel="noopener"><img src="assets/img/ins-dashboard.png" alt="Tableau de bord Power BI de la sinistralité automobile" loading="lazy"></a>
+        <figcaption>
+          <p class="read"><b>Comment lire :</b> le tableau de bord Power BI réunit les chiffres clés du portefeuille, l'indice de prime pure par région, âge, puissance et Bonus-Malus, le poids des sinistres graves et une exploration interactive.</p>
+          <p class="take"><b>À retenir</b>Un outil de pilotage pour les équipes tarifaires : en quelques clics, on voit quels profils coûtent le plus cher, et si le résultat repose sur assez de sinistres pour être fiable.</p>
+        </figcaption>
+      </figure>
+      <figure class="insight">
+        <a href="assets/img/ins-ecretement.png" target="_blank" rel="noopener"><img src="assets/img/ins-ecretement.png" alt="Indice de prime pure brut et écrêté, par âge et par Bonus-Malus" loading="lazy"></a>
+        <figcaption>
+          <p class="read"><b>Comment lire :</b> indice de prime pure de chaque groupe (100 % = moyenne du portefeuille). En orange, l'indice brut ; en bleu, l'indice écrêté, où chaque sinistre est plafonné à 34 495 €.</p>
+          <p class="take"><b>À retenir</b>Sans précaution, les jeunes conducteurs semblent 4,5 fois plus coûteux que la moyenne ; une fois les sinistres exceptionnels plafonnés, ils le sont 2,25 fois. Un seul accident de 4,1 M€ faussait l'image : on ne révise jamais un tarif sur un indice brut.</p>
+        </figcaption>
+      </figure>
+      <figure class="insight">
+        <a href="assets/img/ins-glm.png" target="_blank" rel="noopener"><img src="assets/img/ins-glm.png" alt="Effet de l'âge sur la fréquence, avant et après prise en compte du Bonus-Malus" loading="lazy"></a>
+        <figcaption>
+          <p class="read"><b>Comment lire :</b> nombre d'accidents de chaque tranche d'âge, comparé aux 41–60 ans (1 = même niveau). En orange, l'âge seul ; en bleu, à Bonus-Malus égal. Les traits donnent la marge d'incertitude.</p>
+          <p class="take"><b>À retenir</b>Regardé seul, l'âge double le risque des jeunes. À Bonus-Malus égal, cet effet disparaît presque (1,05) : ce qui compte, c'est l'absence d'historique de conduite. L'enjeu est donc de bien tarifer les nouveaux conducteurs dès la souscription.</p>
+        </figcaption>
+      </figure>
+      <figure class="insight">
+        <a href="assets/img/ins-tarif.png" target="_blank" rel="noopener"><img src="assets/img/ins-tarif.png" alt="Prime prédite et coût observé sur des contrats jamais vus" loading="lazy"></a>
+        <figcaption>
+          <p class="read"><b>Comment lire :</b> sur 20 % des contrats mis de côté, coût réel des sinistres (en gris) et prime calculée par le tarif (en bleu), par âge et par Bonus-Malus, en euros par année d'assurance.</p>
+          <p class="take"><b>À retenir</b>Les barres sont proches pour presque tous les groupes : chacun paie à peu près ce qu'il coûte, et le tarif couvre l'ensemble des sinistres à 1,6 % près. Seule la classe « malus fort », trop petite (10 sinistres), est surtarifée : elle serait à regrouper avec le malus.</p>
+        </figcaption>
+      </figure>
     </div>
     <div class="decision"><b>Recommandations</b>Tarifer les nouveaux conducteurs dès la souscription (Bonus-Malus à 100), avec une majoration renforcée pour les jeunes au volant d'un véhicule de puissance moyenne ou élevée ; financer les sinistres graves par un chargement mutualisé de +37 % plutôt que de surtarifer un segment ; ne jamais réviser un tarif sur un indice brut sans vérifier le volume de sinistres.</div>
     <div class="limits"><b>Limites</b><ul><li>Pas de primes réelles : on compare des coûts, pas une rentabilité ni un loss ratio</li><li>Tarif volontairement limité à trois critères ; la classe malus fort, trop petite, serait à regrouper</li><li>Pas d'information sur la fraude ni de dimension temporelle</li></ul></div>
@@ -643,14 +769,16 @@ footer{padding-block:36px;color:var(--muted);font-size:.85rem;display:flex;justi
   <div class="dlg-head"><span class="label">Stage de fin d'études · M-extend</span><button class="icon-btn" type="button" data-close aria-label="Fermer">✕</button></div>
   <div class="dlg-body">
     <h3 id="t-mextend">Fiabilisation et optimisation d'un algorithme de prévision des ventes</h3>
-    <p class="q">Six mois sur site à Acigné (février à juillet 2026) pour fiabiliser un algorithme de prévision des ventes à 18 mois, en améliorer la précision, automatiser son exécution et le rendre exploitable par les équipes métiers.</p>
+    <p class="q">Six mois sur site à Acigné (février à juillet 2026) pour fiabiliser un algorithme de prévision des ventes à 18 mois, en améliorer la précision, automatiser son exécution, le rendre exploitable par les équipes métiers et en documenter le fonctionnement.</p>
     <div class="missions">
+      <div><h4>Besoins métier</h4><p>Recueil des besoins des équipes commerciales pour identifier les indicateurs clés nécessaires aux analyses de prévision.</p></div>
       <div><h4>Maintenance et fiabilisation</h4><p>Débogage des scripts Python existants, correction des anomalies de traitement et des incohérences d'agrégation, contrôles pour garantir la cohérence des données.</p></div>
       <div><h4>Gestion et qualité des données</h4><p>Collecte, nettoyage, harmonisation et structuration de données multi-sources sous Python et SQL ; contrôle de complétude et de cohérence des données d'entraînement.</p></div>
       <div><h4>Analyse statistique</h4><p>Analyses exploratoires, sélection des facteurs explicatifs internes et externes les plus pertinents, création de variables et d'indicateurs métiers.</p></div>
       <div><h4>Modélisation</h4><p>Conception, comparaison et évaluation de modèles de séries temporelles et de machine learning (voir ci-dessous).</p></div>
       <div><h4>Industrialisation</h4><p>Exécutions mensuelles et trimestrielles automatisées sous Linux (Python, crontab), logs de suivi, alimentation automatique de la base de données avec les prévisions.</p></div>
       <div><h4>Restitution</h4><p>Interface Streamlit de suivi des tendances, présentation aux équipes décisionnelles avec des recommandations opérationnelles.</p></div>
+      <div><h4>Documentation et transmission</h4><p>Documentation technique du fonctionnement de l'algorithme, présentée aux équipes techniques en fin de stage pour en assurer la reprise.</p></div>
     </div>
     <div class="models">
       <h4>Modèles comparés</h4>
