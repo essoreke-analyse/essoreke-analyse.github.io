@@ -223,6 +223,18 @@ dialog::backdrop{background:rgba(8,10,18,.6);backdrop-filter:blur(3px)}
 .cf-status.ok{color:var(--good);font-weight:500}.cf-status.err{color:var(--warn)}
 @media (max-width:640px){.cform .row2{grid-template-columns:1fr}}
 
+/* carte large et missions */
+.card.wide{grid-column:1/-1;flex-direction:row}
+.card.wide .cover{flex:0 0 52%;aspect-ratio:auto;border-bottom:0;border-right:1px solid var(--line);display:flex;align-items:center}
+.card.wide .cover img{height:auto}
+@media (max-width:860px){.card.wide{flex-direction:column}.card.wide .cover{flex:none;aspect-ratio:16/9;border-right:0;border-bottom:1px solid var(--line)}}
+.missions{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.missions > div{background:var(--bg);border-radius:12px;padding:16px;min-width:0}
+.missions h4{font:500 .75rem var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.missions p{font-size:.92rem}
+@media (max-width:860px){.missions{grid-template-columns:1fr}}
+.job ul.exp-d{gap:8px}
+
 /* skills */
 .skills{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
 .skill{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;min-width:0}
@@ -324,13 +336,15 @@ footer{padding-block:36px;color:var(--muted);font-size:.85rem;display:flex;justi
 <div class="kpis" aria-label="Chiffres clés">
  <div class="kpi-track">
   <div><b><span class="cnt" data-to="9">9</span> zones</b><p><strong>classées par niveau de besoin social</strong> pour orienter les actions du Secours Catholique d'Eure-et-Loir, avec un classement testé sous 5 hypothèses.</p></div>
-  <div><b><span class="cnt" data-to="12">12</span> %</b><p><strong>des clients à contacter</strong> pour une campagne de rétention rentable (+13 054 de gain net), contre −12 966 en contactant tout le monde.</p></div>
-  <div><b><span class="cnt" data-to="678007">678 007</span></b><p><strong>contrats auto analysés</strong> pour isoler les segments sous-tarifés et proposer une surprime ciblée.</p></div>
-  <div><b><span class="cnt" data-to="6">6</span> mois</b><p><strong>de prévision des ventes</strong> chez <span style="white-space:nowrap">M-extend</span>, de la collecte multi-sources à la restitution dans Streamlit.</p></div>
+  <div><b><span class="cnt" data-to="12">12</span> %</b><p><strong>des clients à contacter</strong> pour une campagne de rétention rentable (+13 054 de gain net), contre −12 966 en contactant tout le monde.</p></div>
+  <div><b><span class="cnt" data-to="678007">678 007</span></b><p><strong>contrats auto analysés</strong> pour construire un tarif testé sur des contrats jamais vus : il couvre les sinistres à 1,6 % près.</p></div>
+  <div><b><span class="cnt" data-to="436000">436 000</span> $</b><p><strong>de marge perdue en trois ans</strong> par les promotions « prix seul » en grande distribution, mesurés sur 156 semaines de ventes.</p></div>
+  <div><b><span class="cnt" data-to="6">6</span> mois</b><p><strong>de prévision des ventes</strong> chez <span style="white-space:nowrap">M-extend</span>, de la maintenance de l'algorithme à son exécution automatisée.</p></div>
   <div aria-hidden="true"><b><span class="cnt" data-to="9">9</span> zones</b><p><strong>classées par niveau de besoin social</strong> pour orienter les actions du Secours Catholique d'Eure-et-Loir, avec un classement testé sous 5 hypothèses.</p></div>
-  <div aria-hidden="true"><b><span class="cnt" data-to="12">12</span> %</b><p><strong>des clients à contacter</strong> pour une campagne de rétention rentable (+13 054 de gain net), contre −12 966 en contactant tout le monde.</p></div>
-  <div aria-hidden="true"><b><span class="cnt" data-to="678007">678 007</span></b><p><strong>contrats auto analysés</strong> pour isoler les segments sous-tarifés et proposer une surprime ciblée.</p></div>
-  <div aria-hidden="true"><b><span class="cnt" data-to="6">6</span> mois</b><p><strong>de prévision des ventes</strong> chez <span style="white-space:nowrap">M-extend</span>, de la collecte multi-sources à la restitution dans Streamlit.</p></div>
+  <div aria-hidden="true"><b><span class="cnt" data-to="12">12</span> %</b><p><strong>des clients à contacter</strong> pour une campagne de rétention rentable (+13 054 de gain net), contre −12 966 en contactant tout le monde.</p></div>
+  <div aria-hidden="true"><b><span class="cnt" data-to="678007">678 007</span></b><p><strong>contrats auto analysés</strong> pour construire un tarif testé sur des contrats jamais vus : il couvre les sinistres à 1,6 % près.</p></div>
+  <div aria-hidden="true"><b><span class="cnt" data-to="436000">436 000</span> $</b><p><strong>de marge perdue en trois ans</strong> par les promotions « prix seul » en grande distribution, mesurés sur 156 semaines de ventes.</p></div>
+  <div aria-hidden="true"><b><span class="cnt" data-to="6">6</span> mois</b><p><strong>de prévision des ventes</strong> chez <span style="white-space:nowrap">M-extend</span>, de la maintenance de l'algorithme à son exécution automatisée.</p></div>
  </div>
 </div>
 
@@ -339,8 +353,8 @@ footer{padding-block:36px;color:var(--muted);font-size:.85rem;display:flex;justi
   <div class="about">
     <div class="text reveal">
       <p>Je suis Data Analyst, formée à la fois à la statistique économique et à l'actuariat. Ce double regard me sert à poser la bonne question avant de choisir le modèle : quelle décision l'analyse doit-elle éclairer, et quelle erreur coûte le plus cher ?</p>
-      <p>Pendant mon stage de fin d'études chez M-extend, j'ai amélioré un algorithme de prévision des ventes en y intégrant des facteurs explicatifs, puis j'ai restitué les résultats aux équipes métiers dans une application Streamlit.</p>
-      <p>En parallèle, j'aide bénévolement le Secours Catholique d'Eure-et-Loir à prioriser ses actions grâce à un diagnostic statistique de la pauvreté, construit uniquement à partir de données publiques.</p>
+      <p>Pendant mon stage de fin d'études chez M-extend, j'ai fiabilisé et amélioré un algorithme de prévision des ventes, automatisé son exécution sous Linux, puis restitué les résultats aux équipes métiers dans une application Streamlit.</p>
+      <p>En parallèle, j'aide bénévolement le Secours Catholique d'Eure-et-Loir à prioriser ses actions grâce à un diagnostic statistique de la pauvreté, construit uniquement à partir de données publiques. Mes projets personnels couvrent la tarification en assurance, la rétention client et le pricing en grande distribution.</p>
       <p>Je cherche un poste de <strong>Data Analyst, Data Scientist junior ou chargée d'études statistiques</strong>, de préférence dans l'assurance, le conseil, la distribution ou le secteur public.</p>
     </div>
     <div class="facts reveal">
@@ -361,8 +375,20 @@ footer{padding-block:36px;color:var(--muted);font-size:.85rem;display:flex;justi
     <button type="button" data-f="ml" aria-pressed="false">Machine learning</button>
     <button type="button" data-f="stat" aria-pressed="false">Statistique publique</button>
     <button type="button" data-f="bi" aria-pressed="false">BI & assurance</button>
+    <button type="button" data-f="retail" aria-pressed="false">Pricing & retail</button>
   </div>
   <div class="grid">
+    <article class="card wide reveal" data-cat="retail ml">
+      <a class="cover" href="#" data-open="d-promo"><img src="assets/img/promo-decomposition.png" alt="Graphique : origine du volume vendu en promotion, ventes de base et volume additionnel" loading="lazy"></a>
+      <div class="body">
+        <div class="meta"><span class="label">Projet personnel · nouveau</span><span class="label">Python · SQL</span></div>
+        <h3>Promotions et prix en grande distribution : ce qui est rentable</h3>
+        <p>156 semaines de ventes de 55 produits dans 77 magasins : élasticités-prix, volume additionnel et ROI de chaque promotion, prévision hebdomadaire, application en ligne avec simulateur et assistant IA.</p>
+        <div class="metric"><b>436 000 $</b><span>de marge brute perdue en trois ans par les promotions « prix seul », qui financent surtout des ventes qui auraient eu lieu de toute façon</span></div>
+        <div class="tags"><span class="tag">SQL DuckDB</span><span class="tag">Économétrie</span><span class="tag">Élasticités</span><span class="tag">Uplift & ROI</span><span class="tag">LightGBM</span><span class="tag">Streamlit</span><span class="tag">Assistant LLM</span><span class="tag">GitHub Actions</span></div>
+        <div class="actions"><button class="btn primary" type="button" data-open="d-promo">Lire l'étude de cas</button><a class="btn" href="https://promo-pricing-analytics.streamlit.app" target="_blank" rel="noopener">Application en ligne</a><a class="btn" href="https://github.com/essoreke-analyse/promo-pricing-analytics" target="_blank" rel="noopener">Code GitHub</a></div>
+      </div>
+    </article>
     <article class="card reveal" data-cat="stat">
       <a class="cover" href="#" data-open="d-secours"><img src="assets/img/sc-composition.png" alt="Graphique : composition du score de besoin social par zone" loading="lazy"></a>
       <div class="body">
@@ -380,7 +406,7 @@ footer{padding-block:36px;color:var(--muted);font-size:.85rem;display:flex;justi
       <div class="body">
         <div class="meta"><span class="label">Projet personnel</span><span class="label">Python</span></div>
         <h3>Churn télécom : décider qui appeler</h3>
-        <p>Prédiction du départ client transformée en règle de décision rentable pour une campagne de rétention.</p>
+        <p>Prédiction du départ client à 3 mois, transformée en règle de décision : qui contacter pour que la campagne de fidélisation soit rentable.</p>
         <div class="metric"><b>0,947</b><span>de PR-AUC, 95 % des départs captés dans le top 20 %</span></div>
         <div class="tags"><span class="tag">scikit-learn</span><span class="tag">Gradient boosting</span><span class="tag">CV imbriquée</span><span class="tag">pytest</span></div>
         <div class="actions"><button class="btn primary" type="button" data-open="d-churn">Lire l'étude de cas</button><a class="btn" href="https://github.com/essoreke-analyse/telecom-churn-retention" target="_blank" rel="noopener">Code GitHub</a></div>
@@ -388,13 +414,13 @@ footer{padding-block:36px;color:var(--muted);font-size:.85rem;display:flex;justi
     </article>
 
     <article class="card reveal" data-cat="bi">
-      <a class="cover" href="#" data-open="d-assurance"><img src="assets/img/ins-index.png" alt="Graphique : indice de rentabilité par segment" loading="lazy"></a>
+      <a class="cover" href="#" data-open="d-assurance"><img src="assets/img/ins-dashboard.png" alt="Tableau de bord Power BI de la sinistralité automobile" loading="lazy"></a>
       <div class="body">
-        <div class="meta"><span class="label">Projet personnel</span><span class="label">Power BI</span></div>
-        <h3>Sinistralité auto et prime pure simulée</h3>
-        <p>Tableau de bord qui isole les segments sous-tarifés et sépare les vrais signaux des effets de petits volumes.</p>
-        <div class="metric"><b>×2,3</b><span>de fréquence de sinistres chez les jeunes conducteurs en puissance moyenne</span></div>
-        <div class="tags"><span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">Power Query</span><span class="tag">Tarification</span></div>
+        <div class="meta"><span class="label">Projet personnel</span><span class="label">Power BI · Python</span></div>
+        <h3>Sinistralité auto et tarification actuarielle</h3>
+        <p>Tableau de bord Power BI des profils qui coûtent le plus cher, vérifié en Python, puis transformé en grille tarifaire testée sur des contrats jamais vus.</p>
+        <div class="metric"><b>225 %</b><span>indice de prime pure des 18–25 ans une fois les sinistres graves écrêtés, contre 455 % en brut : un seul sinistre de 4,1 M€ faussait l'image</span></div>
+        <div class="tags"><span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">Power Query</span><span class="tag">GLM Poisson & Gamma</span><span class="tag">Écrêtement</span><span class="tag">Tarification</span></div>
         <div class="actions"><button class="btn primary" type="button" data-open="d-assurance">Lire l'étude de cas</button><a class="btn" href="https://github.com/essoreke-analyse/powerbi-insurance-profitability-analysis" target="_blank" rel="noopener">Code GitHub</a></div>
       </div>
     </article>
@@ -406,10 +432,10 @@ footer{padding-block:36px;color:var(--muted);font-size:.85rem;display:flex;justi
       </a>
       <div class="body">
         <div class="meta"><span class="label">M-extend · 2026</span><span class="label">Python · SQL</span></div>
-        <h3>Optimisation d'un algorithme de forecasting</h3>
-        <p>Intégration de facteurs endogènes et exogènes, comparaison de modèles de séries temporelles et de machine learning, restitution dans Streamlit.</p>
-        <div class="metric"><b>Bout en bout</b><span>de la collecte multi-sources à la réflexion sur l'industrialisation</span></div>
-        <div class="tags"><span class="tag">Séries temporelles</span><span class="tag">Machine learning</span><span class="tag">Feature engineering</span><span class="tag">Streamlit</span><span class="tag">Qlik</span></div>
+        <h3>Fiabilisation et optimisation d'un algorithme de prévision des ventes</h3>
+        <p>Débogage et contrôles de cohérence, qualité des données, nouveaux facteurs explicatifs, comparaison de modèles, exécution automatisée sous Linux et restitution dans Streamlit.</p>
+        <div class="metric"><b>18 mois</b><span>d'horizon de prévision, avec des exécutions mensuelles et trimestrielles automatisées qui alimentent la base de données</span></div>
+        <div class="tags"><span class="tag">Séries temporelles</span><span class="tag">Machine learning</span><span class="tag">Feature engineering</span><span class="tag">Linux · crontab</span><span class="tag">Streamlit</span></div>
         <div class="actions"><button class="btn primary" type="button" data-open="d-mextend">Voir le détail</button></div>
       </div>
     </article>
@@ -419,10 +445,10 @@ footer{padding-block:36px;color:var(--muted);font-size:.85rem;display:flex;justi
 <section class="block" id="methode">
   <div class="sec-head"><h2>Comment je travaille</h2><p>Quatre habitudes que l'on retrouve dans chaque projet.</p></div>
   <div class="principles">
-    <div class="reveal"><span class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg></span><h3>Choisir la métrique qui sert la décision</h3><p>L'accuracy cache souvent l'essentiel. Je mesure ce que le métier paie : gain net, rappel sur les cas utiles, sinistralité.</p><span class="ex">Churn : PR-AUC et courbe de profit plutôt qu'accuracy.</span></div>
+    <div class="reveal"><span class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg></span><h3>Choisir la métrique qui sert la décision</h3><p>L'accuracy cache souvent l'essentiel. Je mesure ce que le métier paie : gain net, rappel sur les cas utiles, sinistralité.</p><span class="ex">Churn : PR-AUC et courbe de profit plutôt qu'accuracy. Promotions : marge additionnelle plutôt que hausse de volume.</span></div>
     <div class="reveal"><span class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg></span><h3>Tester la robustesse avant de conclure</h3><p>Un classement qui change dès qu'on bouge un poids ne doit pas guider une décision. Je le vérifie et je dis ce qui tient.</p><span class="ex">Secours Catholique : 5 hypothèses, extrémités stables, milieu fragile.</span></div>
     <div class="reveal"><span class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span><h3>Respecter la statistique publique</h3><p>Pas de moyenne de pourcentages, secret statistique traité, années de source indiquées sous chaque graphique.</p><span class="ex">Taux recalculés à partir des effectifs INSEE et CAF.</span></div>
-    <div class="reveal"><span class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5"/></svg></span><h3>Écrire ce que les données ne disent pas</h3><p>Chaque livrable a sa section limites : petits effectifs, arrondis, associations qui ne sont pas des causes.</p><span class="ex">Assurance : segment régional écarté faute de volume.</span></div>
+    <div class="reveal"><span class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5"/></svg></span><h3>Écrire ce que les données ne disent pas</h3><p>Chaque livrable a sa section limites : petits effectifs, arrondis, associations qui ne sont pas des causes.</p><span class="ex">Assurance : un seul sinistre de 4,1 M€ faisait passer l'indice des jeunes de 225 % à 455 %.</span></div>
   </div>
 </section>
 
@@ -430,13 +456,13 @@ footer{padding-block:36px;color:var(--muted);font-size:.85rem;display:flex;justi
   <div class="sec-head"><h2>Compétences</h2><p>Organisées par domaine, avec le contexte où chacune a servi.</p></div>
   <div class="skills">
     <div class="skill reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 6l-6 6 6 6M16 6l6 6-6 6"/></svg></div><h3>Langages</h3><ul>
-      <li>Python<small>pandas, scikit-learn, pytest</small></li><li>R<small>ggplot2, Quarto, R Markdown</small></li><li>SQL<small>requêtage, automatisation</small></li><li>SAS<small>SQL, Macro, IML · certification</small></li><li>VBA<small>automatisation Excel</small></li></ul></div>
+      <li>Python<small>pandas, scikit-learn, statsmodels, LightGBM, pytest</small></li><li>R<small>ggplot2, Quarto, R Markdown</small></li><li>SQL<small>DuckDB, fonctions de fenêtrage, contrôles qualité</small></li><li>SAS<small>SQL, Macro, IML · certification</small></li><li>VBA<small>automatisation Excel</small></li></ul></div>
     <div class="skill reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 20h18M6 16l4-5 3 3 5-7"/></svg></div><h3>Modélisation</h3><ul>
-      <li>Séries temporelles, prévision<small>stage M-extend</small></li><li>Régression, classification<small>churn</small></li><li>Feature engineering<small>stage, churn</small></li><li>Validation croisée, calibration<small>churn</small></li><li>Scoring, indicateurs composites<small>Secours Catholique</small></li><li>Économétrie, SIG<small>Master Lyon 2</small></li></ul></div>
+      <li>Séries temporelles, prévision<small>stage M-extend</small></li><li>Régression, classification<small>churn</small></li><li>GLM de Poisson et Gamma<small>tarification assurance</small></li><li>Élasticités-prix, uplift<small>promotions</small></li><li>Feature engineering<small>stage, churn</small></li><li>Validation croisée, calibration<small>churn</small></li><li>Scoring, indicateurs composites<small>Secours Catholique</small></li><li>Économétrie, SIG<small>Master Lyon 2</small></li></ul></div>
     <div class="skill reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg></div><h3>BI et restitution</h3><ul>
-      <li>Power BI, DAX, Power Query<small>assurance</small></li><li>Streamlit, Matplotlib<small>stage M-extend</small></li><li>Qlik, Excel avancé<small>tableaux de bord</small></li><li>Rapports Quarto, Jupyter<small>diagnostic, churn</small></li><li>Vulgarisation<small>équipes métiers, bénévoles</small></li></ul></div>
+      <li>Power BI, DAX, Power Query<small>assurance</small></li><li>Streamlit, Plotly, Matplotlib<small>stage, application promo</small></li><li>Qlik, Excel avancé<small>tableaux de bord</small></li><li>Rapports Quarto, Jupyter<small>diagnostic, churn</small></li><li>Vulgarisation<small>équipes métiers, bénévoles</small></li></ul></div>
     <div class="skill reveal"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg></div><h3>Domaines</h3><ul>
-      <li>Assurance, actuariat<small>prime pure, dépendance, vie et non-vie</small></li><li>Statistique publique<small>INSEE, CAF, RPLS</small></li><li>Marketing client<small>rétention, ciblage</small></li><li>Commerce, distribution<small>prévision des ventes</small></li><li>Git, Linux<small>industrialisation</small></li></ul></div>
+      <li>Assurance, actuariat<small>prime pure, dépendance, vie et non-vie</small></li><li>Statistique publique<small>INSEE, CAF, RPLS</small></li><li>Marketing client<small>rétention, ciblage</small></li><li>Grande distribution<small>prix, promotions, prévision</small></li><li>Industrialisation<small>Linux, crontab, Git, GitHub Actions</small></li><li>IA générative<small>assistant LLM évalué sur 20 questions</small></li></ul></div>
   </div>
 </section>
 
@@ -452,15 +478,15 @@ footer{padding-block:36px;color:var(--muted);font-size:.85rem;display:flex;justi
     <div class="job reveal">
       <div class="top"><h3>Ingénieure Analyse prédictive et modélisation statistique · stage</h3><span class="when">févr. – juil. 2026</span></div>
       <div class="org">M-extend · Acigné (35) · sur site</div>
-      <ul>
-        <li>Optimisation d'un algorithme de prévision des ventes par l'intégration de facteurs explicatifs endogènes et exogènes ; évaluation de modèles de machine learning et de séries temporelles</li>
-        <li>Collecte, nettoyage et harmonisation de données multi-sources complexes</li>
-        <li>Analyse exploratoire de données économiques et commerciales ; feature engineering et indicateurs métiers</li>
-        <li>Automatisation des traitements en Python et requêtage SQL</li>
-        <li>Application Streamlit de visualisation des tendances et des prévisions</li>
-        <li>Réflexion sur l'industrialisation avec les équipes techniques ; restitution aux équipes métiers</li>
+      <ul class="exp-d">
+        <li><strong>Maintenance corrective et fiabilisation de l'algorithme :</strong> analyse et débogage des scripts Python existants, correction des anomalies de traitement et des incohérences d'agrégation, contrôles pour sécuriser les traitements et garantir la cohérence des données.</li>
+        <li><strong>Gestion et qualité des données :</strong> collecte, nettoyage, harmonisation et structuration de données multi-sources sous Python et SQL ; contrôle de la complétude et de la cohérence des données d'entraînement des modèles.</li>
+        <li><strong>Analyse statistique et optimisation :</strong> analyses exploratoires, identification des facteurs explicatifs internes et externes les plus pertinents, création de variables et d'indicateurs métiers pour améliorer la prévision des ventes à 18 mois.</li>
+        <li><strong>Modélisation statistique et machine learning :</strong> conception, comparaison et évaluation de modèles de séries temporelles et de machine learning (Holt-Winters, ETS, ARIMA, SARIMAX, Ridge, Random Forest, XGBoost, LightGBM, LSTM).</li>
+        <li><strong>Industrialisation et automatisation :</strong> exécutions mensuelles et trimestrielles automatisées sous Linux (Python, crontab), logs de suivi et alimentation automatique de la base de données avec les prévisions générées.</li>
+        <li><strong>Visualisation et restitution :</strong> interface Streamlit de suivi des tendances et restitution des analyses aux équipes décisionnelles, avec des recommandations opérationnelles.</li>
       </ul>
-      <div class="tags"><span class="tag">Python</span><span class="tag">SQL</span><span class="tag">Streamlit</span><span class="tag">Matplotlib</span><span class="tag">Qlik</span><span class="tag">Linux</span><span class="tag">Git</span><span class="tag">Excel</span></div>
+      <div class="tags"><span class="tag">Python</span><span class="tag">SQL</span><span class="tag">Linux · crontab</span><span class="tag">Séries temporelles</span><span class="tag">Machine learning</span><span class="tag">Streamlit</span><span class="tag">Matplotlib</span><span class="tag">Qlik</span><span class="tag">Git</span><span class="tag">Excel</span></div>
     </div>
   </div>
   <h3 class="sub">Formation</h3>
@@ -545,6 +571,32 @@ footer{padding-block:36px;color:var(--muted);font-size:.85rem;display:flex;justi
   </div>
 </dialog>
 
+<dialog id="d-promo" aria-labelledby="t-promo">
+  <div class="dlg-head"><span class="label">Étude de cas · Pricing et promotions</span><button class="icon-btn" type="button" data-close aria-label="Fermer">✕</button></div>
+  <div class="dlg-body">
+    <h3 id="t-promo">Promotions et prix en grande distribution : ce qui est rentable</h3>
+    <p class="q">Une baisse de prix ou une promotion fait-elle vraiment vendre plus, et lesquelles rapportent ? J'ai analysé 156 semaines de ventes (2009–2012) de 55 produits dans 77 magasins américains : pizza surgelée, céréales, bain de bouche et bretzels. Données publiques dunnhumby, 524 950 lignes.</p>
+    <div class="steps">
+      <div><h4>Données</h4><ul><li>Base DuckDB et requêtes SQL (fonctions de fenêtrage, jointures calendaires)</li><li>Contrôles qualité : 209 lignes exclues, 13 700 doublons de jointure détectés et corrigés</li><li>Pipeline unique, 61 tests automatisés à chaque mise à jour (GitHub Actions)</li></ul></div>
+      <div><h4>Méthode</h4><ul><li>Élasticités-prix propres et croisées, effets fixes, rétrécissement bayésien empirique</li><li>Ventes de base contre volume additionnel, ROI et marge minimale de chaque promotion</li><li>Prévision LightGBM à 1–4 semaines, back-test glissant sur 28 semaines, scénarios P10–P90</li></ul></div>
+      <div><h4>Résultat</h4><ul><li>Prospectus + présentoir multiplient les ventes par 3 à 5 ; la remise seule ajoute 20 à 60 %</li><li>Les promotions « prix seul » : 22 % du budget, environ deux tiers des pertes de marge</li><li>Prévision : WAPE de 29 %, contre 45 % pour une moyenne mobile</li></ul></div>
+    </div>
+    <div class="gallery">
+      <figure><a href="assets/img/promo-decomposition.png" target="_blank" rel="noopener"><img src="assets/img/promo-decomposition.png" alt="Origine du volume vendu en promotion" loading="lazy"></a><figcaption>D'où vient le volume vendu en promotion</figcaption></figure>
+      <figure><a href="assets/img/promo-lift.png" target="_blank" rel="noopener"><img src="assets/img/promo-lift.png" alt="Hausse des ventes selon la mécanique promotionnelle" loading="lazy"></a><figcaption>Hausse des ventes selon la mécanique promotionnelle</figcaption></figure>
+      <figure><a href="assets/img/promo-forecast.png" target="_blank" rel="noopener"><img src="assets/img/promo-forecast.png" alt="Exemple de prévision hebdomadaire" loading="lazy"></a><figcaption>Prévision : LightGBM suit les pics de promotion</figcaption></figure>
+      <figure><a href="assets/img/promo-app.png" target="_blank" rel="noopener"><img src="assets/img/promo-app.png" alt="Simulateur de promotion dans l'application Streamlit" loading="lazy"></a><figcaption>Simulateur de promotion dans l'application en ligne</figcaption></figure>
+    </div>
+    <div class="models">
+      <h4>Application et assistant IA</h4>
+      <p class="note" style="margin-top:0">L'application Streamlit propose un simulateur de promotion (remise, mise en avant, marge : volume, marge et ROI), l'exploration des prévisions et un assistant IA qui répond en français ou en anglais en appelant des outils qui lisent les tables de résultats : chaque chiffre vient de l'analyse. L'assistant est évalué automatiquement sur 20 questions et obtient 20/20, toutes ses réponses s'appuyant sur un appel d'outil.</p>
+    </div>
+    <div class="decision"><b>Recommandations</b>Arrêter progressivement les promotions « prix seul » et réaffecter ce budget au présentoir ; faire du présentoir avec une remise modérée la mécanique par défaut sur les bretzels ; garder prospectus + présentoir sur la pizza et les céréales seulement au-delà d'environ 35 % de marge ; juger chaque promotion sur la marge additionnelle, pas sur la hausse de volume.</div>
+    <div class="limits"><b>Limites</b><ul><li>Marges des produits non disponibles : résultats donnés à 25, 35 et 45 % de marge</li><li>La plupart des changements de prix touchent toute l'enseigne : deux spécifications présentées comme bornes</li><li>Scénarios P10–P90 un peu trop étroits (77 % de couverture pour 80 % visés)</li></ul></div>
+    <div class="links" style="margin-top:0"><a class="btn primary" href="https://promo-pricing-analytics.streamlit.app" target="_blank" rel="noopener">Ouvrir l'application</a><a class="btn" href="https://github.com/essoreke-analyse/promo-pricing-analytics" target="_blank" rel="noopener">Voir le code sur GitHub</a></div>
+  </div>
+</dialog>
+
 <dialog id="d-churn" aria-labelledby="t-churn">
   <div class="dlg-head"><span class="label">Étude de cas · Rétention client</span><button class="icon-btn" type="button" data-close aria-label="Fermer">✕</button></div>
   <div class="dlg-body">
@@ -553,14 +605,14 @@ footer{padding-block:36px;color:var(--muted);font-size:.85rem;display:flex;justi
     <div class="steps">
       <div><h4>Question</h4><p>3 150 clients, 15,7 % de départs. Qui cibler, et combien ça rapporte selon le coût et le taux de succès de l'offre ?</p></div>
       <div><h4>Méthode</h4><ul><li>Tests χ², V de Cramér, Mann-Whitney</li><li>Validation croisée imbriquée, stratifiée et groupée</li><li>Règle de gain espéré : p × succès × valeur − coût &gt; 0</li><li>Version « alerte précoce » sans variables tardives</li><li>39 tests pytest, configuration YAML</li></ul></div>
-      <div><h4>Résultat</h4><ul><li>ROC-AUC 0,987, PR-AUC 0,947</li><li>Brier 0,030 : probabilités bien calibrées</li><li>Rentable de 10 à 50 % de succès et de 5 à 20 de coût</li></ul></div>
+      <div><h4>Résultat</h4><ul><li>ROC-AUC 0,987, PR-AUC 0,947 ; 95 % des départs dans le top 20 %</li><li>En contactant 12 % des clients, on touche 66 % des départs</li><li>Brier 0,030 : probabilités bien calibrées</li><li>Rentable sur toute la grille d'hypothèses (succès de 10 à 50 %, coût de 5 à 20)</li></ul></div>
     </div>
     <div class="gallery">
       <figure><a href="assets/img/churn-profit.png" target="_blank" rel="noopener"><img src="assets/img/churn-profit.png" alt="Gain net selon la politique de contact" loading="lazy"></a><figcaption>Gain net selon la politique de contact</figcaption></figure>
-      <figure><a href="assets/img/churn-models.png" target="_blank" rel="noopener"><img src="assets/img/churn-models.png" alt="PR-AUC des modèles comparés" loading="lazy"></a><figcaption>Comparaison des modèles (PR-AUC)</figcaption></figure>
+      <figure><a href="assets/img/churn-curve.png" target="_blank" rel="noopener"><img src="assets/img/churn-curve.png" alt="Courbe de profit selon la part de clients contactés" loading="lazy"></a><figcaption>Courbe de profit selon la part de clients contactés</figcaption></figure>
     </div>
-    <div class="decision"><b>Recommandation</b>Contacter environ 12 % des clients avec la règle de gain espéré. Surveiller la baisse de fréquence d'appel comme signal précoce et tester l'effet des contrats par A/B test.</div>
-    <div class="limits"><b>Limites</b><ul><li>Coût et taux de succès de l'offre supposés</li><li>Chronologie de certaines variables non documentée</li><li>Associations, pas causalités</li></ul></div>
+    <div class="decision"><b>Recommandation</b>Contacter environ 12 % des clients avec la règle de gain espéré, en présentant le gain comme une fourchette : de +6 800 à +13 000 selon la réaction des clients déjà inactifs. Lancer d'abord la campagne en test A/B pour mesurer le vrai taux de succès de l'offre, et surveiller la baisse de fréquence d'appel comme signal précoce.</div>
+    <div class="limits"><b>Limites</b><ul><li>Un modèle de churn prédit qui va partir, pas qui réagira à l'offre</li><li>Coût et taux de succès de l'offre supposés ; unité de la valeur client non documentée</li><li>Associations, pas causalités</li></ul></div>
     <a class="btn" href="https://github.com/essoreke-analyse/telecom-churn-retention" target="_blank" rel="noopener" style="justify-self:start">Voir le code sur GitHub</a>
   </div>
 </dialog>
@@ -568,18 +620,21 @@ footer{padding-block:36px;color:var(--muted);font-size:.85rem;display:flex;justi
 <dialog id="d-assurance" aria-labelledby="t-assurance">
   <div class="dlg-head"><span class="label">Étude de cas · Assurance auto</span><button class="icon-btn" type="button" data-close aria-label="Fermer">✕</button></div>
   <div class="dlg-body">
-    <h3 id="t-assurance">Diagnostic de sinistralité et prime pure simulée</h3>
-    <p class="q">Un assureur voit sa sinistralité monter sans savoir quels profils en sont responsables. J'ai construit un tableau de bord Power BI pour isoler les segments sous-tarifés.</p>
+    <h3 id="t-assurance">Sinistralité auto et tarification actuarielle</h3>
+    <p class="q">Un assureur voit sa sinistralité monter sans savoir quels profils en sont responsables. J'ai construit un tableau de bord Power BI pour les identifier, vérifié les résultats en Python, puis transformé le diagnostic en grille tarifaire.</p>
     <div class="steps">
-      <div><h4>Question</h4><p>678 007 contrats, 26 383 sinistres, 358 359 années d'exposition. Quels segments dégradent la rentabilité technique ?</p></div>
-      <div><h4>Méthode</h4><ul><li>Nettoyage Power Query et règles métier</li><li>Schéma en étoile, mesures DAX : fréquence, coût moyen, prime pure</li><li>Seuil de vigilance à 50 sinistres</li><li>Croisements âge × puissance</li></ul></div>
-      <div><h4>Résultat</h4><ul><li>18–25 ans : 5,7 % du portefeuille, indice 454,7 %</li><li>Jeunes + puissance moyenne : fréquence ×2,3, coût moyen ×3,9</li><li>Signal régional écarté : 77 sinistres</li></ul></div>
+      <div><h4>Données</h4><p>678 007 contrats, 26 383 sinistres, 358 359 années d'exposition (freMTPL2). Nettoyage Power Query, règles métier, 256 sinistres sans contrat exclus.</p></div>
+      <div><h4>Méthode</h4><ul><li>Modèle en étoile et mesures DAX : fréquence, coût moyen, prime pure, indice brut et écrêté</li><li>Sinistres plafonnés à 34 495 € (99,5ᵉ percentile)</li><li>Intervalles de confiance et seuil de crédibilité à 50 sinistres</li><li>GLM de Poisson (fréquence) et Gamma (coût), tarif testé sur 20 % des contrats mis de côté</li></ul></div>
+      <div><h4>Résultat</h4><ul><li>18–25 ans : fréquence de 14,8 % contre 7,4 %, indice écrêté de 225 %</li><li>À Bonus-Malus égal, l'effet de l'âge disparaît : l'enjeu est la souscription des nouveaux conducteurs</li><li>Le tarif couvre les sinistres à 1,6 % près (Gini 0,18) ; avec un prix unique, 8 assurés sur 10 paieraient trop</li></ul></div>
     </div>
-    <div class="gallery one">
-      <figure><a href="assets/img/ins-index.png" target="_blank" rel="noopener"><img src="assets/img/ins-index.png" alt="Indice de rentabilité par segment" loading="lazy"></a><figcaption>Indice de rentabilité par segment</figcaption></figure>
+    <div class="gallery">
+      <figure><a href="assets/img/ins-dashboard.png" target="_blank" rel="noopener"><img src="assets/img/ins-dashboard.png" alt="Tableau de bord Power BI" loading="lazy"></a><figcaption>Le tableau de bord Power BI</figcaption></figure>
+      <figure><a href="assets/img/ins-ecretement.png" target="_blank" rel="noopener"><img src="assets/img/ins-ecretement.png" alt="Indice de prime pure brut et écrêté" loading="lazy"></a><figcaption>Indice brut et écrêté : un seul sinistre faussait l'image</figcaption></figure>
+      <figure><a href="assets/img/ins-glm.png" target="_blank" rel="noopener"><img src="assets/img/ins-glm.png" alt="Effet de l'âge avant et après prise en compte du Bonus-Malus" loading="lazy"></a><figcaption>Effet de l'âge avant et après le Bonus-Malus (GLM)</figcaption></figure>
+      <figure><a href="assets/img/ins-tarif.png" target="_blank" rel="noopener"><img src="assets/img/ins-tarif.png" alt="Prime prédite et coût observé sur l'échantillon test" loading="lazy"></a><figcaption>Prime prédite et coût observé sur des contrats jamais vus</figcaption></figure>
     </div>
-    <div class="decision"><b>Recommandation</b>Appliquer une surprime à la souscription pour les jeunes conducteurs, en priorité sur les véhicules de puissance moyenne à élevée.</div>
-    <div class="limits"><b>Limites</b><ul><li>Pas de primes réelles : prime pure simulée</li><li>Pas de dimension temporelle ni d'information sur la fraude</li></ul></div>
+    <div class="decision"><b>Recommandations</b>Tarifer les nouveaux conducteurs dès la souscription (Bonus-Malus à 100), avec une majoration renforcée pour les jeunes au volant d'un véhicule de puissance moyenne ou élevée ; financer les sinistres graves par un chargement mutualisé de +37 % plutôt que de surtarifer un segment ; ne jamais réviser un tarif sur un indice brut sans vérifier le volume de sinistres.</div>
+    <div class="limits"><b>Limites</b><ul><li>Pas de primes réelles : on compare des coûts, pas une rentabilité ni un loss ratio</li><li>Tarif volontairement limité à trois critères ; la classe malus fort, trop petite, serait à regrouper</li><li>Pas d'information sur la fraude ni de dimension temporelle</li></ul></div>
     <a class="btn" href="https://github.com/essoreke-analyse/powerbi-insurance-profitability-analysis" target="_blank" rel="noopener" style="justify-self:start">Voir le projet sur GitHub</a>
   </div>
 </dialog>
@@ -587,17 +642,20 @@ footer{padding-block:36px;color:var(--muted);font-size:.85rem;display:flex;justi
 <dialog id="d-mextend" aria-labelledby="t-mextend">
   <div class="dlg-head"><span class="label">Stage de fin d'études · M-extend</span><button class="icon-btn" type="button" data-close aria-label="Fermer">✕</button></div>
   <div class="dlg-body">
-    <h3 id="t-mextend">Optimisation d'un algorithme de prévision des ventes</h3>
-    <p class="q">Six mois sur site à Acigné (février à juillet 2026) pour améliorer la précision d'un algorithme de forecasting et le rendre exploitable par les équipes métiers.</p>
-    <div class="steps">
-      <div><h4>Données</h4><ul><li>Collecte et harmonisation de sources multiples</li><li>Contrôle qualité avant modélisation</li><li>Requêtage SQL et automatisation Python</li></ul></div>
-      <div><h4>Modélisation</h4><ul><li>Facteurs explicatifs endogènes et exogènes</li><li>Feature engineering et indicateurs métiers</li><li>Comparaison de modèles de séries temporelles et de machine learning</li></ul></div>
-      <div><h4>Restitution</h4><ul><li>Application Streamlit : tendances et prévisions</li><li>Réflexion sur l'industrialisation avec les équipes techniques</li><li>Présentation des résultats aux équipes métiers</li></ul></div>
+    <h3 id="t-mextend">Fiabilisation et optimisation d'un algorithme de prévision des ventes</h3>
+    <p class="q">Six mois sur site à Acigné (février à juillet 2026) pour fiabiliser un algorithme de prévision des ventes à 18 mois, en améliorer la précision, automatiser son exécution et le rendre exploitable par les équipes métiers.</p>
+    <div class="missions">
+      <div><h4>Maintenance et fiabilisation</h4><p>Débogage des scripts Python existants, correction des anomalies de traitement et des incohérences d'agrégation, contrôles pour garantir la cohérence des données.</p></div>
+      <div><h4>Gestion et qualité des données</h4><p>Collecte, nettoyage, harmonisation et structuration de données multi-sources sous Python et SQL ; contrôle de complétude et de cohérence des données d'entraînement.</p></div>
+      <div><h4>Analyse statistique</h4><p>Analyses exploratoires, sélection des facteurs explicatifs internes et externes les plus pertinents, création de variables et d'indicateurs métiers.</p></div>
+      <div><h4>Modélisation</h4><p>Conception, comparaison et évaluation de modèles de séries temporelles et de machine learning (voir ci-dessous).</p></div>
+      <div><h4>Industrialisation</h4><p>Exécutions mensuelles et trimestrielles automatisées sous Linux (Python, crontab), logs de suivi, alimentation automatique de la base de données avec les prévisions.</p></div>
+      <div><h4>Restitution</h4><p>Interface Streamlit de suivi des tendances, présentation aux équipes décisionnelles avec des recommandations opérationnelles.</p></div>
     </div>
     <div class="models">
       <h4>Modèles comparés</h4>
       <div class="mgrid">
-        <div><div class="k">Séries temporelles</div><div class="chips"><span class="chip">Seasonal naive <em>référence</em></span><span class="chip">Moyenne mobile</span><span class="chip">ETS</span><span class="chip">ARIMA</span><span class="chip">SARIMA</span><span class="chip">SARIMAX <em>variables exogènes</em></span><span class="chip">Croston <em>demande intermittente</em></span></div></div>
+        <div><div class="k">Séries temporelles</div><div class="chips"><span class="chip">Seasonal naive <em>référence</em></span><span class="chip">Moyenne mobile</span><span class="chip">Holt-Winters</span><span class="chip">ETS</span><span class="chip">ARIMA</span><span class="chip">SARIMA</span><span class="chip">SARIMAX <em>variables exogènes</em></span><span class="chip">Croston <em>demande intermittente</em></span></div></div>
         <div><div class="k">Machine learning</div><div class="chips"><span class="chip">Ridge</span><span class="chip">Lasso</span><span class="chip">Random Forest</span><span class="chip">SVR</span><span class="chip">XGBoost</span><span class="chip">LightGBM</span><span class="chip">LSTM</span></div></div>
       </div>
       <p class="note">Chaque modèle est comparé à une prévision naïve saisonnière : un modèle n'est retenu que s'il fait mieux que cette référence simple.</p>
@@ -643,7 +701,7 @@ document.querySelectorAll('dialog').forEach(d=>{
 const fbtns=document.querySelectorAll('.filters button');
 fbtns.forEach(b=>b.addEventListener('click',()=>{
   fbtns.forEach(x=>x.setAttribute('aria-pressed',x===b));
-  document.querySelectorAll('.card').forEach(c=>c.hidden = !(b.dataset.f==='all' || c.dataset.cat===b.dataset.f));
+  document.querySelectorAll('.card').forEach(c=>c.hidden = !(b.dataset.f==='all' || c.dataset.cat.split(' ').includes(b.dataset.f)));
 }));
 // Formulaire de contact (envoi via FormSubmit vers l'adresse email)
 (function(){
